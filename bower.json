@@ -1,0 +1,16 @@
+{
+  "name": "juice",
+  "description": "Mixins for Life",
+  "version": "1.0.0",
+  "homepage": "http://juicynex.us/juice",
+  "main": "dist/juice.scss",
+  "authors": [
+    "Kyle Brumm <kjbrum@msn.com>"
+  ],
+  "dependencies": {},
+  "devDependencies": {},
+  "license": "MIT",
+  "ignore": [
+    "./!(dist)",
+  ]
+}
