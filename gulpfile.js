@@ -121,10 +121,10 @@ gulp.task('browser-sync', function () {
 		'build/img/**/*.{png,jpg,jpeg,gif}'
 	];
 	browserSync.init(files, {
-		// server: {
-		// 	baseDir: './'
-		// },
-		proxy: 'juice.github.dev', // Proxy for local dev sites
+		server: {
+			baseDir: './'
+		},
+		// proxy: 'juice.github.dev', // Proxy for local dev sites
 		port: 5555, // Sets the port in which to serve the site
 		open: false, // Stops BS from opening a new browser window
 		// ghostMode: { // Disable ghosting features (Useful when sharing a link for people to troubleshoot)
