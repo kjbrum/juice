@@ -8,5 +8,7 @@
 	"dependencies": {},
 	"devDependencies": {},
 	"license": "MIT",
-	"ignore": "./!(dist)",
+	"ignore": [
+		"./!(dist)"
+	]
 }
