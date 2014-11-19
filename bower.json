@@ -4,13 +4,9 @@
   "version": "1.0.0",
   "homepage": "http://juicynex.us/juice",
   "main": "dist/juice.scss",
-  "authors": [
-    "Kyle Brumm <kjbrum@msn.com>"
-  ],
+  "authors": "Kyle Brumm <kjbrum@msn.com>",
   "dependencies": {},
   "devDependencies": {},
   "license": "MIT",
-  "ignore": [
-    "./!(dist)",
-  ]
+  "ignore": "./!(dist)",
 }
