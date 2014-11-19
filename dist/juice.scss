@@ -345,10 +345,10 @@ $breakpoints: (
 	}
 }
 
-// Create an arrow using borders (add in the option to make a border)
+// Create an triangle using borders (add in the option to make a border)
 // http://cssarrowplease.com/
 // ------------------------------------------------------------------
-@mixin arrow($direction: "right", $size: "0.5rem", $color: "black", $center: false, $element: "after") {
+@mixin triangle($direction: "right", $size: "0.5rem", $color: "black", $center: false, $element: "after") {
   &:#{$element} {
     position: if($center,'',absolute);
     content: '';

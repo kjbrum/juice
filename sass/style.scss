@@ -1,1 +1,54 @@
-@import "dist/juice"
+// Juice
+@import "dist/juice";
+
+// Twitter Bootstrap
+@import "bootstrap";
+
+// Font Awesome
+@import "font-awesome";
+
+// Partials
+@import "colors";
+@import "fonts";
+
+// Globals
+*,
+*:before,
+*:after {
+	transition: 0.3s ease-out;
+}
+
+b, strong,
+i, em,
+span {
+	transition: 0 !important;
+	&:before,
+	&:after {
+		transition: 0 !important;
+	}
+}
+
+html,
+html a {
+  -webkit-font-smoothing: antialiased;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
+}
+
+html {
+	background: $dark-blue;
+	min-width: 20rem;
+}
+
+body {
+	background: transparent;
+}
+
+a {
+	@include hoverer(color, $purple, $teal);
+}
+
+.hero {
+	text-align: center;
+	color: $teal;
+	@extend %centerer;
+}

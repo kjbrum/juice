@@ -1,15 +1,26 @@
 {
 	"name": "juice",
-	"description": "Mixins for Life",
+	"description": "SASS Mixins for Life",
 	"version": "0.0.1",
 	"homepage": "http://juicynex.us/juice",
-	"main": "dist/juice.scss",
-	"authors": "Kyle Brumm <kjbrum@msn.com>",
-	"dependencies": {},
-	"devDependencies": {},
+	"keywords": [
+		"CSS",
+		"SASS",
+		"SCSS",
+		"mixins",
+		"styling",
+		"helper"
+	],
+	"main": [
+		"dist/juice.scss"
+	],
+	"authors": [
+		"Kyle Brumm <https://twitter.com/kyle_brumm>"
+	],
 	"license": "MIT",
 	"ignore": [
 		"*.*",
+		"bower_components",
 		"build",
 		"img",
 		"js",

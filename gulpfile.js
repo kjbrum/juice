@@ -22,7 +22,8 @@ var paths = {
 	scripts: 'js/**/*.js',
 	styles: 'sass/**/*.scss',
 	fonts: 'sass/fonts/*',
-	images: 'img/**/*.{png,jpg,jpeg,gif}'
+	images: 'img/**/*.{png,jpg,jpeg,gif}',
+	bowerDir: './bower_components'
 };
 
 var destPaths = {
@@ -46,7 +47,14 @@ var handleErrors = function() {
 gulp.task('styles', function() {
 	return gulp.src(paths.styles)
 		.pipe(plumber())
-		.pipe(sass({sourcemap: true, sourcemapPath: paths.styles}))
+		.pipe(sass({
+			sourcemap: true,
+			sourcemapPath: paths.styles,
+			loadPath: [
+				paths.bowerDir + '/bootstrap-sass-official/assets/stylesheets',
+				paths.bowerDir + '/fontawesome/scss',
+			]
+		}))
 		.pipe(autoprefixer())
 		.pipe(gulp.dest(destPaths.styles))
 		.pipe(notify('Styles task complete!'));
@@ -56,7 +64,12 @@ gulp.task('styles', function() {
 gulp.task('build-styles', function() {
 	return gulp.src(paths.styles)
 		.pipe(plumber())
-		.pipe(sass())
+		.pipe(sass({
+			loadPath: [
+				paths.bowerDir + '/bootstrap-sass-official/assets/stylesheets',
+				paths.bowerDir + '/fontawesome/scss',
+			]
+		}))
 		.pipe(autoprefixer({
 			cascade: false
 		}))
