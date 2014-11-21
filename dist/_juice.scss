@@ -266,6 +266,7 @@ $breakpoints: (
 				transform: translateY(-#{$size});
 			}
 		}
+		@content;
 	}
 }
 
