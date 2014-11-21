@@ -48,7 +48,7 @@ a {
 }
 
 hr {
-	border-color: #ccc;
+	border-color: #ddd;
 }
 
 h1,h2,h3,
@@ -56,10 +56,17 @@ h4,h5,h6 {
 	margin: 0;
 }
 
+p {
+	text-align: justify;
+}
+
 section {
 	padding-top: 42px;
 	&#about {
-		padding-top: 10px;
+		padding-top: 50px;
+		article {
+			padding: 0 10px;
+		}
 	}
 }
 
@@ -69,6 +76,7 @@ section {
 	border: solid $dark-blue;
 	border-width: 1px 0;
 	h3 {
+		letter-spacing: 2px;
 		color: $purple;
 	}
 }
@@ -78,11 +86,30 @@ article {
 	width: 100%;
 	max-width: 800px;
 	margin: 0 auto;
-	padding: 40px 0;
+	padding: 40px 10px;
+	h3,h4 {
+		margin-bottom: 5px;
+	}
 }
 
+.download-repo {
+	border: 1px solid $purple;
+	color: $dark-blue;
+	padding: 10px 15px;
+	&:hover {
+		color: $dark-blue;
+		border-color: $teal;
+	}
+}
+
+.top {
+	@include fixed(null,10px,10px);
+	background: $purple;
+	padding: 10px;
+	border-radius: 100%;
+	color: $dark-blue;
+}
 // Code styling
-// @import "code_styles/tomorrow-night-eighties";
 @import "code_styles/obsidian-mod";
 
 pre {
@@ -104,12 +131,10 @@ code {
 		transform: scale(1.4);
 	}
 }
-
 footer {
 	font-size: 1.2rem;
 	background: $dark-blue;
   padding: 20px 0;
-  text-align: center;
   color: $white;
   .fa-heart {
   	padding: 0 4px;
@@ -120,6 +145,7 @@ footer {
   	color: $white;
   }
   p {
+	  text-align: center;
   	margin: 0;
   }
 }

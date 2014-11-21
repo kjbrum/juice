@@ -47,11 +47,11 @@ $link-hover-decoration: none !default;
 //
 //## Font, line-height, and color for body text, headings, and more.
 
-$font-family-sans-serif:  $ds;
-$font-family-serif:       $ds;
+$font-family-sans-serif:  $os;
+$font-family-serif:       $os;
 //** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
 $font-family-monospace:   Consolas, monospace;
-$font-family-base:        $ds;
+$font-family-base:        $os;
 
 $font-size-base:          16px !default;
 $font-size-large:         ceil(($font-size-base * 1.25)) !default; // ~18px
@@ -78,7 +78,7 @@ $line-height-computed:    floor(($font-size-base * $line-height-base)) !default;
 
 //** By default, this inherits from the `<body>`.
 $headings-font-family:    $raleway !default;
-$headings-font-weight:    700 !default;
+$headings-font-weight:    500 !default;
 $headings-line-height:    1.1 !default;
 $headings-color:          $dark-blue !default;
 
@@ -364,9 +364,9 @@ $container-lg:                 $container-large-desktop !default;
 // Basics of a navbar
 $navbar-height:                    auto !default;
 $navbar-margin-bottom:             $line-height-computed !default;
-$navbar-border-radius:             $border-radius-base !default;
+$navbar-border-radius:             0 !default;
 $navbar-padding-horizontal:        0 !default;
-$navbar-padding-vertical:          (($navbar-height - $line-height-computed) / 2) !default;
+$navbar-padding-vertical:          15px !default;
 $navbar-collapse-max-height:       340px !default;
 
 $navbar-default-color:             $white !default;
@@ -384,7 +384,7 @@ $navbar-default-link-disabled-bg:          transparent !default;
 
 // Navbar brand label
 $navbar-default-brand-color:               $navbar-default-link-color !default;
-$navbar-default-brand-hover-color:         darken($navbar-default-brand-color, 10%) !default;
+$navbar-default-brand-hover-color:         $teal !default;
 $navbar-default-brand-hover-bg:            transparent !default;
 
 // Navbar toggle

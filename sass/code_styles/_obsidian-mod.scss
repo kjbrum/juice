@@ -7,7 +7,7 @@
   display: block;
   overflow-x: auto;
   padding: 0.5em;
-  background: #282b2e;
+  background: #353535;
   -webkit-text-size-adjust: none;
 }
 
@@ -19,7 +19,7 @@
 .nginx .hljs-title,
 .css .hljs-id,
 .tex .hljs-special {
-  color: #93c763;
+  color: #15f2bf;
 }
 
 .hljs-number {
@@ -37,7 +37,7 @@
 
 .hljs-attribute,
 .hljs .hljs-constant {
-  color: #668bb0;
+  color: #6cbfdc;
 }
 
 .xml .hljs-attribute {
@@ -56,16 +56,16 @@
 
 .hljs-class,
 .hljs-hexcolor {
-  color: #93c763;
+  color: #adf2df;
 }
 
 .hljs-regexp {
-  color: #d39745;
+  color: #68ccd3;
 }
 
 .hljs-at_rule,
 .hljs-at_rule .hljs-keyword {
-  color: #a082bd;
+  color: #d69ee6;
 }
 
 .hljs-doctype {
@@ -99,11 +99,11 @@
 .apache .hljs-cbracket,
 .tex .hljs-command,
 .hljs-prompt {
-  color: #8cbbad;
+  color: #b6f3e1;
 }
 
 .hljs-string {
-  color: #ec7600;
+  color: #619aec;
 }
 
 .hljs-comment,

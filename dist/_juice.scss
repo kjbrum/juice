@@ -235,7 +235,7 @@ $breakpoints: (
 		@if not $center {
 			position: absolute;
 		}
-		content: '';
+		content:"";
 		@include square(0);
 		border: #{$size} solid transparent;
 		@if $direction == "up" {
@@ -294,13 +294,12 @@ $default-position: null !default;
 
 // Clearfix
 // --------
-// For clearing floats like a boss h5bp.com/q
 %clearfix {
  *zoom: 1;
  &:before,
  &:after {
 	 display: table;
-	 content: "";
+	 content:"";
 	 line-height: 0;
  }
  &:after {
