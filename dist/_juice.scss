@@ -168,66 +168,129 @@ $breakpoints: (
 }
 
 // --------------------------------------------------
-// GRADIENTS - https://github.com/twbs/bootstrap-sass
-// --------------------------------------------------
-// Horizontal gradient, from left to right
-//
-// Creates two color stops, start and end, by specifying a color and position for each color stop.
-// Color stops are not available in IE9 and below.
-@mixin gradient-horizontal($start-color: #555, $end-color: #333, $start-percent: 0%, $end-percent: 100%) {
-  background-image: -webkit-linear-gradient(left, $start-color $start-percent, $end-color $end-percent); // Safari 5.1-6, Chrome 10+
-  background-image: -o-linear-gradient(left, $start-color $start-percent, $end-color $end-percent); // Opera 12
-  background-image: linear-gradient(to right, $start-color $start-percent, $end-color $end-percent); // Standard, IE10, Firefox 16+, Opera 12.10+, Safari 7+, Chrome 26+
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str($start-color)}', endColorstr='#{ie-hex-str($end-color)}', GradientType=1); // IE9 and down
-}
-
-// Vertical gradient, from top to bottom
-//
-// Creates two color stops, start and end, by specifying a color and position for each color stop.
-// Color stops are not available in IE9 and below.
-@mixin gradient-vertical($start-color: #555, $end-color: #333, $start-percent: 0%, $end-percent: 100%) {
-  background-image: -webkit-linear-gradient(top, $start-color $start-percent, $end-color $end-percent);  // Safari 5.1-6, Chrome 10+
-  background-image: -o-linear-gradient(top, $start-color $start-percent, $end-color $end-percent);  // Opera 12
-  background-image: linear-gradient(to bottom, $start-color $start-percent, $end-color $end-percent); // Standard, IE10, Firefox 16+, Opera 12.10+, Safari 7+, Chrome 26+
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str($start-color)}', endColorstr='#{ie-hex-str($end-color)}', GradientType=0); // IE9 and down
-}
-
-@mixin gradient-directional($start-color: #555, $end-color: #333, $deg: 45deg) {
-  background-repeat: repeat-x;
-  background-image: -webkit-linear-gradient($deg, $start-color, $end-color); // Safari 5.1-6, Chrome 10+
-  background-image: -o-linear-gradient($deg, $start-color, $end-color); // Opera 12
-  background-image: linear-gradient($deg, $start-color, $end-color); // Standard, IE10, Firefox 16+, Opera 12.10+, Safari 7+, Chrome 26+
-}
-@mixin gradient-horizontal-three-colors($start-color: #00b3ee, $mid-color: #7a43b6, $color-stop: 50%, $end-color: #c3325f) {
-  background-image: -webkit-linear-gradient(left, $start-color, $mid-color $color-stop, $end-color);
-  background-image: -o-linear-gradient(left, $start-color, $mid-color $color-stop, $end-color);
-  background-image: linear-gradient(to right, $start-color, $mid-color $color-stop, $end-color);
-  background-repeat: no-repeat;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str($start-color)}', endColorstr='#{ie-hex-str($end-color)}', GradientType=1); // IE9 and down, gets no color-stop at all for proper fallback
-}
-@mixin gradient-vertical-three-colors($start-color: #00b3ee, $mid-color: #7a43b6, $color-stop: 50%, $end-color: #c3325f) {
-  background-image: -webkit-linear-gradient($start-color, $mid-color $color-stop, $end-color);
-  background-image: -o-linear-gradient($start-color, $mid-color $color-stop, $end-color);
-  background-image: linear-gradient($start-color, $mid-color $color-stop, $end-color);
-  background-repeat: no-repeat;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str($start-color)}', endColorstr='#{ie-hex-str($end-color)}', GradientType=0); // IE9 and down, gets no color-stop at all for proper fallback
-}
-@mixin gradient-radial($inner-color: #555, $outer-color: #333) {
-  background-image: -webkit-radial-gradient(circle, $inner-color, $outer-color);
-  background-image: radial-gradient(circle, $inner-color, $outer-color);
-  background-repeat: no-repeat;
-}
-@mixin gradient-striped($color: rgba(255,255,255,.15), $angle: 45deg) {
-  background-image: -webkit-linear-gradient($angle, $color 25%, transparent 25%, transparent 50%, $color 50%, $color 75%, transparent 75%, transparent);
-  background-image: -o-linear-gradient($angle, $color 25%, transparent 25%, transparent 50%, $color 50%, $color 75%, transparent 75%, transparent);
-  background-image: linear-gradient($angle, $color 25%, transparent 25%, transparent 50%, $color 50%, $color 75%, transparent 75%, transparent);
-}
-
-// --------------------------------------------------
 // UTILITIES / EXTRAS
 // --------------------------------------------------
+
+// Emboss Effect
+// -------------
+@mixin box-emboss($opacity, $opacity2){
+	box-shadow: rgba(white,$opacity) 0 1px 0, inset rgba(black,$opacity2) 0 1px 0;
+}
+
+// Letterpress Effect
+// ------------------
+@mixin letterpress($opacity){
+	text-shadow: rgba(white,$opacity) 0 1px 0;
+}
+
+// Placeholder text
+// ----------------
+@mixin placeholder-color($color: #555555) {
+	&::placeholder {
+		color: $color;
+	}
+}
+
+// Sizing
+// ------
+@mixin size($width, $height: $width) {
+ width: $width;
+ height: $height;
+}
+@mixin square($size) {
+ @include size($size, $size);
+}
+
+// Add hover state
+// ---------------
+@mixin hoverer($attr, $normal, $hovered) {
+	#{$attr}: #{$normal};
+	&:hover {
+		#{$attr}: #{$hovered};
+	}
+}
+
+// Add responsive styling for multiple widths
+// ------------------------------------------
+@mixin responsive($attr, $full, $medium:false, $small:false) {
+	#{$attr}: #{$full};
+	@if $medium {
+		@include bp(medium) {
+			#{$attr}: #{$medium};
+		}
+	}
+	@if $small {
+		@include bp(small) {
+			#{$attr}: #{$small};
+		}
+	}
+}
+
+// Create an triangle using borders (add in the option to make a border)
+// Cut down on the code (Use sass maps for "trbl" and translate direction, maybe even direction and border direction)
+// http://cssarrowplease.com/
+// ------------------------------------------------------------------
+@mixin triangle($direction: "right", $size: "0.5rem", $color: "black", $center: false, $element: "after") {
+	&:#{$element} {
+		@if not $center {
+			position: absolute;
+		}
+		content: '';
+		@include square(0);
+		border: #{$size} solid transparent;
+		@if $direction == "up" {
+			border-bottom-color: #{$color};
+			@if $center {
+				@include absolute(null,null,100%,50%);
+				transform: translateX(-#{$size});
+			}
+		}
+		@if $direction == "right" {
+			border-left-color: #{$color};
+			@if $center {
+				@include absolute(50%,null,null,100%);
+				transform: translateY(-#{$size});
+			}
+		}
+		@if $direction == "down" {
+			border-top-color: #{$color};
+			@if $center {
+				@include absolute(100%,null,null,50%);
+				transform: translateX(-#{$size});
+			}
+		}
+		@if $direction == "left" {
+			border-right-color: #{$color};
+			@if $center {
+				@include absolute(50%,100%);
+				transform: translateY(-#{$size});
+			}
+		}
+	}
+}
+
+// Advanced Positioning
+// ------------------------------------------------------
+$default-position: null !default;
+@mixin position($type, $top: $default-position, $right: $default-position, $bottom: $default-position, $left: $default-position) {
+	position: #{$type};
+	$allowed_types: "absolute" "relative" "fixed";
+	@if not index($allowed_types, $type) {
+		@warn "Unknown position: #{$type}.";
+	}
+	@each $data in top $top, right $right, bottom $bottom, left $left {
+		#{nth($data, 1)}: nth($data, 2);
+	}
+}
+@mixin absolute($top: $default-position, $right: $default-position, $bottom: $default-position, $left: $default-position) {
+	@include position("absolute", $top, $right, $bottom, $left);
+}
+@mixin relative($top: $default-position, $right: $default-position, $bottom: $default-position, $left: $default-position) {
+	@include position("relative", $top, $right, $bottom, $left);
+}
+@mixin fixed($top: $default-position, $right: $default-position, $bottom: $default-position, $left: $default-position) {
+	@include position("fixed", $top, $right, $bottom, $left);
+}
 
 // Clearfix
 // --------
@@ -288,134 +351,6 @@ $breakpoints: (
 	margin-right: auto;
 }
 
-// Emboss Effect
-// -------------
-@mixin box-emboss($opacity, $opacity2){
-	box-shadow:white($opacity) 0 1px 0, inset black($opacity2) 0 1px 0;
-}
-
-// Letterpress Effect
-// ------------------
-@mixin letterpress($opacity){
-	text-shadow:white($opacity) 0 1px 0;
-}
-
-// Placeholder text
-// ----------------
-@mixin placeholder-color($color: #555555) {
- &:-moz-placeholder {
-	 color: $color;
- }
- &:-ms-input-placeholder {
-	 color: $color;
- }
- &::-webkit-input-placeholder {
-	 color: $color;
- }
-}
-
-// Sizing
-// ------
-@mixin size($width, $height: $width) {
- width: $width;
- height: $height;
-}
-@mixin square($size) {
- @include size($size, $size);
-}
-
-// Add hover state
-// ---------------
-@mixin hoverer($attr, $normal, $hovered) {
-	#{$attr}: #{$normal};
-	&:hover {
-		#{$attr}: #{$hovered};
-	}
-}
-
-// Add responsive styling for multiple widths
-// ------------------------------------------
-@mixin responsive($attr, $full, $medium:false, $small:false) {
-	#{$attr}: #{$full};
-	@include bp(medium) {
-		#{$attr}: #{$medium};
-	}
-	@include bp(small) {
-		#{$attr}: #{$small};
-	}
-}
-
-// Create an triangle using borders (add in the option to make a border)
-// http://cssarrowplease.com/
-// ------------------------------------------------------------------
-@mixin triangle($direction: "right", $size: "0.5rem", $color: "black", $center: false, $element: "after") {
-  &:#{$element} {
-    position: if($center,'',absolute);
-    content: '';
-    @include square(0);
-    border: #{$size} solid transparent;
-  }
-  @if $direction == "up" {
-    &:#{$element} {
-      border-bottom-color: #{$color};
-      @if $center {
-        @include absolute(null,null,100%,50%);
-        transform: translateX(-#{$size});
-      }
-    }
-  }
-  @if $direction == "right" {
-    &:#{$element} {
-      border-left-color: #{$color};
-      @if $center {
-        @include absolute(50%,null,null,100%);
-        transform: translateY(-#{$size});
-      }
-    }
-  }
-  @if $direction == "down" {
-    &:#{$element} {
-      border-top-color: #{$color};
-      @if $center {
-        @include absolute(100%,null,null,50%);
-        transform: translateX(-#{$size});
-      }
-    }
-  }
-  @if $direction == "left" {
-    &:#{$element} {
-      border-right-color: #{$color};
-      @if $center {
-        @include absolute(50%,100%);
-        transform: translateY(-#{$size});
-      }
-    }
-  }
-}
-
-// Advanced Positioning
-// ------------------------------------------------------
-$default-position: null !default;
-@mixin position($type, $top: $default-position, $right: $default-position, $bottom: $default-position, $left: $default-position) {
-	position: #{$type};
-
-	$allowed_types: "absolute" "relative" "fixed";
-	@if not index($allowed_types, $type) {
-		@warn "Unknown position: #{$type}.";
-	}
-	@each $data in top $top, right $right, bottom $bottom, left $left {
-		#{nth($data, 1)}: nth($data, 2);
-	}
-}
-@mixin absolute($top: $default-position, $right: $default-position, $bottom: $default-position, $left: $default-position) {
-	@include position("absolute", $top, $right, $bottom, $left);
-}
-@mixin relative($top: $default-position, $right: $default-position, $bottom: $default-position, $left: $default-position) {
-	@include position("relative", $top, $right, $bottom, $left);
-}
-@mixin fixed($top: $default-position, $right: $default-position, $bottom: $default-position, $left: $default-position) {
-	@include position("fixed", $top, $right, $bottom, $left);
-}
 
 // --------------------------------------------------
 // FUNCTIONS

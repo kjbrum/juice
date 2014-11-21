@@ -1,15 +1,16 @@
 // Juice
 @import "dist/juice";
 
+// Partials
+@import "colors";
+@import "fonts";
+
 // Twitter Bootstrap
+@import "variables";
 @import "bootstrap";
 
 // Font Awesome
 @import "font-awesome";
-
-// Partials
-@import "colors";
-@import "fonts";
 
 // Globals
 *,
@@ -35,20 +36,90 @@ html a {
 }
 
 html {
-	background: $dark-blue;
 	min-width: 20rem;
 }
 
 body {
-	background: transparent;
+	position: relative;
 }
 
 a {
 	@include hoverer(color, $purple, $teal);
 }
 
-.hero {
+hr {
+	border-color: #ccc;
+}
+
+h1,h2,h3,
+h4,h5,h6 {
+	margin: 0;
+}
+
+section {
+	padding-top: 42px;
+	&#about {
+		padding-top: 10px;
+	}
+}
+
+.section-heading {
+	padding: 30px;
 	text-align: center;
-	color: $teal;
-	@extend %centerer;
+	border: solid $dark-blue;
+	border-width: 1px 0;
+	h3 {
+		color: $purple;
+	}
+}
+
+article {
+	float: none;
+	width: 100%;
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 40px 0;
+}
+
+// Code styling
+// @import "code_styles/tomorrow-night-eighties";
+@import "code_styles/obsidian-mod";
+
+pre {
+	padding: 0 !important;
+}
+code {
+	padding: 20px !important;
+}
+
+// Partials
+@import "header";
+
+// Footer
+@keyframes pulse {
+	from {
+		transform: scale(1);
+	}
+	to {
+		transform: scale(1.4);
+	}
+}
+
+footer {
+	font-size: 1.2rem;
+	background: $dark-blue;
+  padding: 20px 0;
+  text-align: center;
+  color: $white;
+  .fa-heart {
+  	padding: 0 4px;
+  	color: #ff5555;
+  	animation: pulse 1s ease-in-out infinite alternate;
+  }
+  a {
+  	color: $white;
+  }
+  p {
+  	margin: 0;
+  }
 }

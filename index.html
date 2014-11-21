@@ -8,15 +8,439 @@
     <link href="build/css/style.css" rel="stylesheet">
 
   </head>
-  <body>
-  	<div class="container">
-  		<div class="hero row">
-		    <h1>Juice.scss<h1>
-		    <h3>Mixins for Life</h3>
-		  </div>
-	  </div>
+  <body id="top" data-spy="scroll" data-target=".navbar-collapse">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navigation">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand visible-xs" href="#top">Juice</a>
+        </div>
+        <div class="collapse navbar-collapse" id="main-navigation">
+          <ul class="nav navbar-nav">
+            <li><a href="#about">About</a></li>
+            <li><a href="#mixins">The Mixins</a></li>
+            <li><a href="#placeholders">Placeholders</a></li>
+            <li><a href="#functions">Functions</a></li>
+            <li><a href="#download">Download</a></li>
+            <li><a href="#credit">Credit</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <header class="hero">
+      <h1>Juice<h1>
+      <h2>Mixins for Life</h2>
+    </header>
+
+    <!-- About Section -->
+    <section id="about">
+      <article>
+        <p>This is where I will breifly describe what this is and why I made it.  Beard Portland health goth Schlitz vegan lomo fap butcher farm-to-table.  Biodiesel banh mi Truffaut, you probably haven't heard of them four loko vinyl fashion axe shabby chic lumbersexual pug.  Vegan messenger bag brunch, bespoke mlkshk four loko kogi single-origin coffee tattooed.  Umami dreamcatcher selvage retro.  Bitters shabby chic master cleanse dreamcatcher small batch slow-carb.  Asymmetrical Portland Cosby sweater lo-fi pour-over.</p>
+        <p>Tote bag keytar cronut heirloom normcore.  Fingerstache Pinterest Williamsburg meh street art cardigan, tousled letterpress cornhole tattooed.  Food truck chillwave plaid, umami lo-fi American Apparel taxidermy blog before they sold out Godard DIY banjo.  Mlkshk gastropub 8-bit, tousled McSweeney's meditation tilde.  Pickled disrupt four loko cornhole pour-over tousled.  Pop-up occupy synth, Schlitz flannel normcore cold-pressed seitan bespoke selfies Truffaut Banksy.  Squid iPhone Carles shabby chic migas Echo Park.</p>
+    </section>
+
+    <!-- Mixin Section -->
+    <section id="mixins">
+      <article class="section-heading">
+        <h3>The Mixins</h3>
+      </article>
+
+      <article id="breakpoints">
+        <h3>Breakpoints</h3>
+        <p>Short description on how to use the mixin.</p>
+        <hr>
+        <h4>Example:</h4>
+<pre><code class="language-scss">.element {
+  @include bp(480px,1024px) {
+    color: black;
+  }
+}</code></pre>
+          <h4>CSS Output:</h4>
+<pre><code class="language-scss">@media screen and (min-width: 480px) and (max-width: 1024px) {
+  .element {
+    color: black;
+  }
+}</code></pre>
+      </article>
+
+      <article id="single-side-border">
+        <h3>Single Side Border Radius</h3>
+        <p>Short description on how to use the mixin.</p>
+        <hr>
+        <h4>Example:</h4>
+<pre><code class="language-scss">.element {
+  @include border-top-radius(5px);
+}</code></pre>
+          <h4>CSS Output:</h4>
+<pre><code class="language-scss">.element {
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}</code></pre>
+      </article>
+
+      <article id="single-transform">
+        <h3>Single Transform</h3>
+        <p>Short description on how to use the mixin.</p>
+        <hr>
+        <h4>Example:</h4>
+<pre><code class="language-scss">.element {
+  @include rotate(45deg);
+}</code></pre>
+          <h4>CSS Output:</h4>
+<pre><code class="language-scss">.element {
+  transform: rotate(45deg);
+}</code></pre>
+      </article>
+
+      <article id="box-emboss">
+        <h3>Box Emboss</h3>
+        <p>Short description on how to use the mixin.</p>
+        <hr>
+        <h4>Example:</h4>
+<pre><code class="language-scss">.element {
+  @include box-emboss(0.5,0.75);
+}</code></pre>
+          <h4>CSS Output:</h4>
+<pre><code class="language-scss">.element {
+  box-shadow: rgba(255, 255, 255, 0.5) 0 1px 0, inset rgba(0, 0, 0, 0.75) 0 1px 0;
+}</code></pre>
+      </article>
+
+      <article id="letterpress">
+        <h3>Letterpress</h3>
+        <p>Short description on how to use the mixin.</p>
+        <hr>
+        <h4>Example:</h4>
+<pre><code class="language-scss">.element {
+  @include letterpress(0.75);
+}</code></pre>
+          <h4>CSS Output:</h4>
+<pre><code class="language-scss">.element {
+  text-shadow: rgba(255, 255, 255, 0.75) 0 1px 0;
+}</code></pre>
+      </article>
+
+      <article id="placeholder-color">
+        <h3>Placeholder Color</h3>
+        <p>Short description on how to use the mixin.</p>
+        <hr>
+        <h4>Example:</h4>
+<pre><code class="language-scss">input {
+  @include placeholder-color(#222222);
+}</code></pre>
+          <h4>CSS Output:</h4>
+<pre><code class="language-scss">input::placeholder {
+  color: #222222;
+}</code></pre>
+      </article>
+
+      <article id="sizing">
+        <h3>Sizing</h3>
+        <p>Short description on how to use the mixin.</p>
+        <hr>
+        <h4>Example:</h4>
+<pre><code class="language-scss">.element {
+  @include size(25px,100px);
+  &:after {
+    @include square(10px);
+  }
+}</code></pre>
+          <h4>CSS Output:</h4>
+<pre><code class="language-scss">.element {
+  width: 25px;
+  height: 100px;
+}
+.element:after {
+  width: 10px;
+  height: 10px;
+}</code></pre>
+      </article>
+
+      <article id="hoverer">
+        <h3>Hoverer</h3>
+        <p>Short description on how to use the mixin.</p>
+        <hr>
+        <h4>Example:</h4>
+<pre><code class="language-scss">.element {
+  @include hoverer(color, #555555, #222222);
+}</code></pre>
+          <h4>CSS Output:</h4>
+<pre><code class="language-scss">.element {
+  color: #555555;
+}
+.element:hover {
+  color: #222222;
+}</code></pre>
+      </article>
+
+      <article id="responsive">
+        <h3>Responsive</h3>
+        <p>Short description on how to use the mixin.</p>
+        <hr>
+        <h4>Example:</h4>
+<pre><code class="language-scss">.element {
+  @include responsive(background-color, #FFFFFF, #DDDDDD, #BBBBBB);
+}</code></pre>
+          <h4>CSS Output:</h4>
+<pre><code class="language-scss">.element {
+  background-color: #FFFFFF;
+}
+@media only screen and (max-width: 64em) {
+  .element {
+    background-color: #DDDDDD;
+  }
+}
+@media only screen and (max-width: 40em) {
+  .element {
+    background-color: #BBBBBB;
+  }
+}</code></pre>
+      </article>
+
+      <article id="triangle">
+        <h3>Triangle</h3>
+        <p>Short description on how to use the mixin.</p>
+        <hr>
+        <h4>Example:</h4>
+<pre><code class="language-scss">.element {
+  @include triangle($color:grey, $center:true);
+}</code></pre>
+          <h4>CSS Output:</h4>
+<pre><code class="language-scss">.element {
+  content: '';
+  width: 0;
+  height: 0;
+  border: 0.5rem solid transparent;
+  border-left-color: grey;
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translateY(-0.5rem);
+}</code></pre>
+      </article>
+
+      <article id="position">
+        <h3>Position</h3>
+        <p>Short description on how to use the mixin.</p>
+        <hr>
+        <h4>Example:</h4>
+<pre><code class="language-scss">.element {
+  @include position(absolute,null,null,10px,15px);
+}
+.absolute-element {
+  @include absolute(null,25px,25px);
+}
+.relative-element {
+  @include relative(null,5px,5px);
+}
+.fixed-element {
+  @include fixed(10px,50px);
+}</code></pre>
+          <h4>CSS Output:</h4>
+<pre><code class="language-scss">.element {
+  position: absolute;
+  bottom: 10px;
+  left: 15px;
+}
+.absolute-element {
+  position: absolute;
+  right: 25px;
+  bottom: 25px;
+}
+.relative-element {
+  position: relative;
+  right: 5px;
+  bottom: 5px;
+}
+.fixed-element {
+  position: fixed;
+  top: 10px;
+  right: 50px;
+}</code></pre>
+      </article>
+
+    </section>
+
+
+    <!-- Placeholders Section -->
+    <section id="placeholders">
+      <article class="section-heading">
+        <h3>Placeholders</h3>
+      </article>
+
+      <article id="clearfix">
+        <h3>Clearfix</h3>
+        <p>Short description on how to use the mixin.</p>
+        <hr>
+        <h4>Example:</h4>
+<pre><code class="language-scss">.element {
+  @extend %clearfix;
+}</code></pre>
+          <h4>CSS Output:</h4>
+<pre><code class="language-scss">.element {
+  *zoom: 1;
+  &:before,
+  &:after {
+    display: table;
+    content: "";
+    line-height: 0;
+  }
+    &:after {
+    clear: both;
+  }
+}</code></pre>
+      </article>
+
+      <article id="hide-text">
+        <h3>Hide Text</h3>
+        <p>Short description on how to use the mixin.</p>
+        <hr>
+        <h4>Example:</h4>
+<pre><code class="language-scss">.element {
+  @extend %hide-text;
+}</code></pre>
+          <h4>CSS Output:</h4>
+<pre><code class="language-scss">.element {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+}</code></pre>
+      </article>
+
+      <article id="centerer">
+        <h3>Centerer</h3>
+        <p>Short description on how to use the mixin.</p>
+        <hr>
+        <h4>Example:</h4>
+<pre><code class="language-scss">.element {
+  @extend %centerer;
+}</code></pre>
+          <h4>CSS Output:</h4>
+<pre><code class="language-scss">.element {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}</code></pre>
+      </article>
+
+      <article id="vert-centerer">
+        <h3>Vertical Centerer</h3>
+        <p>Short description on how to use the mixin.</p>
+        <hr>
+        <h4>Example:</h4>
+<pre><code class="language-scss">.element {
+  @extend %vert-centerer;
+}</code></pre>
+          <h4>CSS Output:</h4>
+<pre><code class="language-scss">.element {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}</code></pre>
+      </article>
+
+      <article id="coverer">
+        <h3>Coverer</h3>
+        <p>Short description on how to use the mixin.</p>
+        <hr>
+        <h4>Example:</h4>
+<pre><code class="language-scss">.element {
+  @extend %coverer;
+}</code></pre>
+          <h4>CSS Output:</h4>
+<pre><code class="language-scss">.element {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}</code></pre>
+      </article>
+
+      <article id="center-block">
+        <h3>Center Block</h3>
+        <p>Short description on how to use the mixin.</p>
+        <hr>
+        <h4>Example:</h4>
+<pre><code class="language-scss">.element {
+  @extend %center-block;
+}</code></pre>
+          <h4>CSS Output:</h4>
+<pre><code class="language-scss">.element {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}</code></pre>
+      </article>
+
+    </section>
+
+
+    <!-- Funcitons Section -->
+    <section id="functions">
+      <article class="section-heading">
+        <h3>Functions</h3>
+      </article>
+
+      <article id="tint">
+        <h3>Tint</h3>
+        <p>Short description on how to use the mixin.</p>
+        <hr>
+        <h4>Example:</h4>
+<pre><code class="language-scss">.element {
+  color: tint(#0000ff,15%);
+}</code></pre>
+          <h4>CSS Output:</h4>
+<pre><code class="language-scss">.element {
+  color: #2626ff;
+}</code></pre>
+      </article>
+
+    </section>
+
+
+    <!-- Download Section -->
+    <section id="download">
+      <article class="section-heading">
+        <h3>Download</h3>
+      </article>
+
+      <article id="breakpoints">
+        <h3>Breakpoints</h3>
+        <p>Beard food truck salvia, wayfarers pour-over gentrify brunch Blue Bottle.  Drinking vinegar hashtag scenester, 90's Pinterest umami migas gentrify.  Organic Tonx vinyl Thundercats hella +1 bespoke, 8-bit selvage listicle squid seitan lumbersexual street art kitsch.  Crucifix migas single-origin coffee, chillwave raw denim four dollar toast pop-up meditation biodiesel Portland mustache literally Vice fingerstache tote bag.</p>
+        <hr>
+        <h4>Example:</h4>
+      </article>
+
+    </section>
+
+
+    <!-- Credit Section -->
+    <section id="credit">
+      <article class="section-heading">
+        <h3>Credit</h3>
+      </article>
+
+      <article id="breakpoints">
+        <h3>Breakpoints</h3>
+        <p>Beard food truck salvia, wayfarers pour-over gentrify brunch Blue Bottle.  Drinking vinegar hashtag scenester, 90's Pinterest umami migas gentrify.  Organic Tonx vinyl Thundercats hella +1 bespoke, 8-bit selvage listicle squid seitan lumbersexual street art kitsch.  Crucifix migas single-origin coffee, chillwave raw denim four dollar toast pop-up meditation biodiesel Portland mustache literally Vice fingerstache tote bag.</p>
+      </article>
+
+    </section>
+
+    <footer>
+      <p>Built with <i class="fa fa-heart"></i> by <a href="http://kylebrumm.com">Kyle Brumm</a></p>
+    </footer>
+
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="build/js/main.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
   </body>
 </html>

@@ -1,0 +1,25 @@
+#main-navigation {
+	.navbar-nav {
+		float: none;
+		text-align: center;
+		li {
+			float: none;
+			display: inline-block;
+		}
+	}
+}
+
+.hero {
+	text-align: center;
+	background: $dark-blue;
+	padding: 80px 0 40px;
+	border-bottom: 5px solid $teal;
+	h1 {
+		color: $purple;
+		font-weight: 400;
+		font-size: 8rem;
+	}
+	h2 {
+		color: $white;
+	}
+}
