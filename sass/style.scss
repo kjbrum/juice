@@ -67,8 +67,14 @@ p {
 ///////////////////////////////////
 // Header
 ///////////////////////////////////
+.navbar {
+	border: 0;
+}
 .navbar-header {
 	position: relative;
+}
+.navbar-collapse {
+	box-shadow: none;
 }
 .navbar-toggle {
 	@include absolute(50%, 0);
@@ -84,6 +90,10 @@ p {
 	font-family: $raleway;
 	font-size: 3rem;
 	line-height: 1;
+	opacity: 0;
+	&.visible {
+		opacity: 1;
+	}
 }
 #main-navigation {
 	.navbar-nav {
@@ -95,12 +105,6 @@ p {
 			display: inline-block;
 		}
 	}
-}
-.navbar {
-	border: 0;
-}
-.navbar-collapse {
-	box-shadow: none;
 }
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,
@@ -161,6 +165,9 @@ p {
 ///////////////////////////////////
 section {
 	padding-top: 40px;
+	* {
+		overflow: hidden;
+	}
 }
 
 article {

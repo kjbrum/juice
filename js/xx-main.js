@@ -25,11 +25,18 @@ $(function() {
 	});
 
 	function setTop() {
-		var $top = $('.top');
+		var $top = $('.top'),
+				$brand = $('.navbar-brand');
 		if($(this).scrollTop() > 0) {
 			$top.addClass('visible');
 		} else {
 			$top.removeClass('visible');
+		}
+
+		if($(this).scrollTop() >= 232) {
+			$brand.addClass('visible');
+		} else {
+			$brand.removeClass('visible');
 		}
 	}
 
