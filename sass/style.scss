@@ -165,9 +165,10 @@ p {
 ///////////////////////////////////
 section {
 	padding-top: 40px;
-	* {
-		overflow: hidden;
-	}
+}
+
+.row {
+	margin: 0 -10px;
 }
 
 article {
@@ -217,12 +218,12 @@ article:not(.section-heading) {
 	width: 100%;
 	transform: translateX(-50%);
 	&.bottom > .arrow {
-		left: 85%;
+		display: none;
 	}
 }
 
 .popover-content {
-	padding: 11px 11px 0 11px;
+	padding: 11px;
 }
 
 ///////////////////////////////////
