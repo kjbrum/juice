@@ -384,7 +384,7 @@ $navbar-default-link-disabled-bg:          transparent !default;
 
 // Navbar brand label
 $navbar-default-brand-color:               $navbar-default-link-color !default;
-$navbar-default-brand-hover-color:         $teal !default;
+$navbar-default-brand-hover-color:         $navbar-default-link-color !default;
 $navbar-default-brand-hover-bg:            transparent !default;
 
 // Navbar toggle
