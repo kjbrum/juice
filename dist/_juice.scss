@@ -5,53 +5,80 @@
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
+////////////////////////////////////////
+// Add default variables at the top here
+////////////////////////////////////////
+
+// Base px
+$base-px-default: 16 !default;
+
+// Breakpoints
+$hdpi-ratio-default: 1.3 !default;
+
+// Border Radius
+$border-radius-default: 5px !default;
+
+// Placeholder Color
+$placeholder-color-default: #555555 !default;
+
+// Triangle
+$triangle-direction-default: "right" !default;
+$triangle-size-default: "10px" !default;
+$triangle-color-default: "#000000" !default;
+$triangle-element-default: "after" !default;
+
+// Position
+$position-default: null !default;
+
+// Tint/Shade
+$mix-percent-default: 15% !default;
+
 // --------------------------------------------------
 // BREAKPOINTS
 // --------------------------------------------------
 // Breakpoint settings
-$hdpi-ratio: 1.3 !default;
 $breakpoints: (
-	'xxlarge':		 						(min-width: 120.0625em),												// >= 1921px
-	'xlarge':			 						(max-width: 120em),															// <= 1920px
-	'xlarge-only': 						(min-width: 90.0625em) and (max-width: 120em),	// 1441px - 1920px
-	'large':			 						(max-width: 90em),															// <= 1440px
-	'large-only':	 						(min-width: 64.0625em) and (max-width: 90em),		// 1025px - 1440px
-	'medium':			 						(max-width: 64em),															// <= 1024px
-	'medium-only': 						(min-width: 40.0625em) and (max-width: 64em),		// 641px - 1024px
-	'not-small':	 						(min-width: 40.0625em),													// >= 641px
-	'small':			 						(max-width: 40em),															// <= 640px
-	'xsmall':			 						(max-width: 30em),															// <= 480px
-	'xxsmall':		 						(max-width: 20em),															// <= 320px
-	'iphone3':		 						(min-device-width: 320px) and (max-device-width: 480px) and (-webkit-device-pixel-ratio: 1),
-	'iphone3-landscape':		 	(min-device-width: 320px) and (max-device-width: 480px) and (-webkit-device-pixel-ratio: 1) and (orientation: landscape),
-	'iphone3-portrait':				(min-device-width: 320px) and (max-device-width: 480px) and (-webkit-device-pixel-ratio: 1) and (orientation: portrait),
-	'iphone4':		 						(min-device-width: 320px) and (max-device-width: 480px) and (-webkit-device-pixel-ratio: 2) and (device-aspect-ratio: 2/3),
-	'iphone4-landscape':			(min-device-width: 320px) and (max-device-width: 480px) and (-webkit-device-pixel-ratio: 2) and (device-aspect-ratio: 2/3) and (orientation: landscape),
-	'iphone4-portrait':				(min-device-width: 320px) and (max-device-width: 480px) and (-webkit-device-pixel-ratio: 2) and (device-aspect-ratio: 2/3) and (orientation: portrait),
-	'iphone5':		 						(min-device-width: 320px) and (max-device-width: 568px) and (-webkit-device-pixel-ratio: 2) and (device-aspect-ratio: 40/71),
-	'iphone5-landscape':			(min-device-width: 320px) and (max-device-width: 568px) and (-webkit-device-pixel-ratio: 2) and (device-aspect-ratio: 40/71) and (orientation: landscape),
-	'iphone5-portrait':		 		(min-device-width: 320px) and (max-device-width: 568px) and (-webkit-device-pixel-ratio: 2) and (device-aspect-ratio: 40/71) and (orientation: portrait),
-	'iphone6':		 						(min-device-width: 375px) and (max-device-width: 667px) and (-webkit-device-pixel-ratio: 2),
-	'iphone6-landscape':			(min-device-width: 375px) and (max-device-width: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape),
-	'iphone6-portrait':		 		(min-device-width: 375px) and (max-device-width: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait),
-	'iphone6-plus':						(min-device-width: 414px) and (max-device-width: 736px) and (-webkit-device-pixel-ratio: 3),
-	'iphone6-plus-landscape':	(min-device-width: 414px) and (max-device-width: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape),
-	'iphone6-plus-portrait':	(min-device-width: 414px) and (max-device-width: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait),
-	'ipad':		 		 						(min-device-width: 768px) and (max-device-width: 1024px),
-	'ipad-landscape':		 			(min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape),
-	'ipad-portrait':		 			(min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait),
-	'ipad-retina': 						(min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-device-pixel-ratio: 2),
-	'ipad-retina-landscape': 	(min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape),
-	'ipad-retina-portrait': 	(min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait),
-	'hdpi':				 						"(-webkit-min-device-pixel-ratio: $hdpi-ratio),
-														only screen and (min--moz-device-pixel-ratio: $hdpi-ratio),
-														only screen and (-moz-min-device-pixel-ratio: $hdpi-ratio),
-														only screen and (-o-min-device-pixel-ratio: #{$hdpi-ratio}/1),
-														only screen and (min-resolution: #{round($hdpi-ratio*96)}dpi),
-														only screen and (min-resolution: #{$hdpi-ratio}dppx)",
+	"xxlarge":		 						(min-width: 120.0625em),												// >= 1921px
+	"xlarge":			 						(max-width: 120em),															// <= 1920px
+	"xlarge-only": 						(min-width: 90.0625em) and (max-width: 120em),	// 1441px - 1920px
+	"large":			 						(max-width: 90em),															// <= 1440px
+	"large-only":	 						(min-width: 64.0625em) and (max-width: 90em),		// 1025px - 1440px
+	"medium":			 						(max-width: 64em),															// <= 1024px
+	"medium-only": 						(min-width: 40.0625em) and (max-width: 64em),		// 641px - 1024px
+	"not-small":	 						(min-width: 40.0625em),													// >= 641px
+	"small":			 						(max-width: 40em),															// <= 640px
+	"xsmall":			 						(max-width: 30em),															// <= 480px
+	"xxsmall":		 						(max-width: 20em),															// <= 320px
+	"iphone3":		 						(min-device-width: 320px) and (max-device-width: 480px) and (-webkit-device-pixel-ratio: 1),
+	"iphone3-landscape":		 	(min-device-width: 320px) and (max-device-width: 480px) and (-webkit-device-pixel-ratio: 1) and (orientation: landscape),
+	"iphone3-portrait":				(min-device-width: 320px) and (max-device-width: 480px) and (-webkit-device-pixel-ratio: 1) and (orientation: portrait),
+	"iphone4":		 						(min-device-width: 320px) and (max-device-width: 480px) and (-webkit-device-pixel-ratio: 2) and (device-aspect-ratio: 2/3),
+	"iphone4-landscape":			(min-device-width: 320px) and (max-device-width: 480px) and (-webkit-device-pixel-ratio: 2) and (device-aspect-ratio: 2/3) and (orientation: landscape),
+	"iphone4-portrait":				(min-device-width: 320px) and (max-device-width: 480px) and (-webkit-device-pixel-ratio: 2) and (device-aspect-ratio: 2/3) and (orientation: portrait),
+	"iphone5":		 						(min-device-width: 320px) and (max-device-width: 568px) and (-webkit-device-pixel-ratio: 2) and (device-aspect-ratio: 40/71),
+	"iphone5-landscape":			(min-device-width: 320px) and (max-device-width: 568px) and (-webkit-device-pixel-ratio: 2) and (device-aspect-ratio: 40/71) and (orientation: landscape),
+	"iphone5-portrait":		 		(min-device-width: 320px) and (max-device-width: 568px) and (-webkit-device-pixel-ratio: 2) and (device-aspect-ratio: 40/71) and (orientation: portrait),
+	"iphone6":		 						(min-device-width: 375px) and (max-device-width: 667px) and (-webkit-device-pixel-ratio: 2),
+	"iphone6-landscape":			(min-device-width: 375px) and (max-device-width: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape),
+	"iphone6-portrait":		 		(min-device-width: 375px) and (max-device-width: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait),
+	"iphone6-plus":						(min-device-width: 414px) and (max-device-width: 736px) and (-webkit-device-pixel-ratio: 3),
+	"iphone6-plus-landscape":	(min-device-width: 414px) and (max-device-width: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape),
+	"iphone6-plus-portrait":	(min-device-width: 414px) and (max-device-width: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait),
+	"ipad":		 		 						(min-device-width: 768px) and (max-device-width: 1024px),
+	"ipad-landscape":		 			(min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape),
+	"ipad-portrait":		 			(min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait),
+	"ipad-retina": 						(min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-device-pixel-ratio: 2),
+	"ipad-retina-landscape": 	(min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape),
+	"ipad-retina-portrait": 	(min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait),
+	"hdpi":				 						"(-webkit-min-device-pixel-ratio: $hdpi-ratio-default),
+														only screen and (min--moz-device-pixel-ratio: $hdpi-ratio-default),
+														only screen and (-moz-min-device-pixel-ratio: $hdpi-ratio-default),
+														only screen and (-o-min-device-pixel-ratio: #{$hdpi-ratio-default}/1),
+														only screen and (min-resolution: #{round($hdpi-ratio-default*96)}dpi),
+														only screen and (min-resolution: #{$hdpi-ratio-default}dppx)",
 );
 @mixin bp($break, $viewport1: null) {
-	// Check if we are just passing a default value
+	// Check if we are passing a preset value
 	@if not $viewport1 {
 		@if map-has-key($breakpoints, $break) {
 			@media only screen and #{inspect(map-get($breakpoints, $break))} { @content; }
@@ -82,19 +109,19 @@ $breakpoints: (
 
 // Single side border radius
 // -------------------------
-@mixin border-top-radius($radius) {
+@mixin border-top-radius($radius: $border-radius-default) {
 	border-top-right-radius: $radius;
 	border-top-left-radius: $radius;
 }
-@mixin border-right-radius($radius) {
+@mixin border-right-radius($radius: $border-radius-default) {
 	border-top-right-radius: $radius;
 	border-bottom-right-radius: $radius;
 }
-@mixin border-bottom-radius($radius) {
+@mixin border-bottom-radius($radius: $border-radius-default) {
 	border-bottom-right-radius: $radius;
 	border-bottom-left-radius: $radius;
 }
-@mixin border-left-radius($radius) {
+@mixin border-left-radius($radius: $border-radius-default) {
 	border-top-left-radius: $radius;
 	border-bottom-left-radius: $radius;
 }
@@ -117,8 +144,9 @@ $breakpoints: (
 @mixin rotateZ($deg) {
 	@include transform-single(rotateZ, $deg);
 }
-@mixin rotate3d($rotate3d...) {
-	@include transform-single(rotate3d, $rotate3d);
+@mixin rotate3d($x, $y, $z, $deg) {
+	$multi-var: $x, $y, $z, $deg;
+	@include transform-single(rotate3d, $multi-var);
 }
 @mixin scale($ratio) {
 	@include transform-single(scale, $ratio);
@@ -185,7 +213,7 @@ $breakpoints: (
 
 // Placeholder text
 // ----------------
-@mixin placeholder-color($color: #555555) {
+@mixin placeholder-color($color: $placeholder-color-default) {
 	&::placeholder {
 		color: $color;
 	}
@@ -194,43 +222,47 @@ $breakpoints: (
 // Sizing
 // ------
 @mixin size($width, $height: $width) {
- width: $width;
- height: $height;
+	width: $width;
+	height: $height;
 }
 @mixin square($size) {
- @include size($size, $size);
+	@include size($size, $size);
 }
 
 // Add hover state
 // ---------------
-@mixin hoverer($attr, $normal, $hovered) {
-	#{$attr}: #{$normal};
+@mixin hoverer($property, $normal, $hovered) {
+	#{$property}: #{$normal};
 	&:hover {
-		#{$attr}: #{$hovered};
+		#{$property}: #{$hovered};
 	}
 }
 
 // Add responsive styling for multiple widths
 // ------------------------------------------
-@mixin responsive($attr, $full, $medium:false, $small:false) {
-	#{$attr}: #{$full};
+@mixin responsive($property, $full, $medium:false, $small:false) {
+	#{$property}: #{$full};
 	@if $medium {
 		@include bp(medium) {
-			#{$attr}: #{$medium};
+			#{$property}: #{$medium};
 		}
 	}
 	@if $small {
 		@include bp(small) {
-			#{$attr}: #{$small};
+			#{$property}: #{$small};
 		}
 	}
 }
 
-// Create an triangle using borders (add in the option to make a border)
+// Create a triangle using borders (add in the option to make a border)
 // Cut down on the code (Use sass maps for "trbl" and translate direction, maybe even direction and border direction)
 // http://cssarrowplease.com/
 // ------------------------------------------------------------------
-@mixin triangle($direction: "right", $size: "0.5rem", $color: "black", $center: false, $element: "after") {
+@mixin triangle($direction: $triangle-direction-default,
+								$size: $triangle-size-default,
+								$color: $triangle-color-default,
+								$center: false,
+								$element: $triangle-element-default) {
 	&:#{$element} {
 		@if not $center {
 			position: absolute;
@@ -272,8 +304,7 @@ $breakpoints: (
 
 // Advanced Positioning
 // ------------------------------------------------------
-$default-position: null !default;
-@mixin position($type, $top: $default-position, $right: $default-position, $bottom: $default-position, $left: $default-position) {
+@mixin position($type, $top: $position-default, $right: $position-default, $bottom: $position-default, $left: $position-default) {
 	position: #{$type};
 	$allowed_types: "absolute" "relative" "fixed";
 	@if not index($allowed_types, $type) {
@@ -283,37 +314,37 @@ $default-position: null !default;
 		#{nth($data, 1)}: nth($data, 2);
 	}
 }
-@mixin absolute($top: $default-position, $right: $default-position, $bottom: $default-position, $left: $default-position) {
+@mixin absolute($top: $position-default, $right: $position-default, $bottom: $position-default, $left: $position-default) {
 	@include position("absolute", $top, $right, $bottom, $left);
 }
-@mixin relative($top: $default-position, $right: $default-position, $bottom: $default-position, $left: $default-position) {
+@mixin relative($top: $position-default, $right: $position-default, $bottom: $position-default, $left: $position-default) {
 	@include position("relative", $top, $right, $bottom, $left);
 }
-@mixin fixed($top: $default-position, $right: $default-position, $bottom: $default-position, $left: $default-position) {
+@mixin fixed($top: $position-default, $right: $position-default, $bottom: $position-default, $left: $position-default) {
 	@include position("fixed", $top, $right, $bottom, $left);
 }
 
 // Clearfix
 // --------
 %clearfix {
- *zoom: 1;
- &:before,
- &:after {
-	 display: table;
-	 content:"";
-	 line-height: 0;
- }
- &:after {
-	 clear: both;
- }
+	*zoom: 1;
+	&:before,
+	&:after {
+		display: table;
+		content:"";
+		line-height: 0;
+	}
+	&:after {
+		clear: both;
+	}
 }
 
 // Hide text
 // ---------
 %hide-text {
- font: 0/0 a;
- color: transparent;
- text-shadow: none;
+	font: 0/0 a;
+	color: transparent;
+	text-shadow: none;
 }
 
 // Center an element
@@ -358,13 +389,13 @@ $default-position: null !default;
 
 // Mix white with another color
 // ----------------------------
-@function tint($color, $percent){
+@function tint($color, $percent: $mix-percent-default){
 	@return mix(white, $color, $percent);
 }
  
 // Mix black with another color
 // ----------------------------
-@function shade($color, $percent){
+@function shade($color, $percent: $mix-percent-default){
 	@return mix(black, $color, $percent);
 }
 
@@ -376,20 +407,19 @@ $default-position: null !default;
 
 // Calculate rems from a px value
 // ------------------------------
-$base-px: 16 !default;
-@function rem-calc($px) {
+@function rem-calc($px, $base-val: $base-px-default) {
 	@if not unitless($px) {
 		$px: strip-units($px);
 	}
-	@if not unitless($base-px) {
-		$base-px: strip-units($base-px);
+	@if not unitless($base-val) {
+		$base-val: strip-units($base-val);
 	}
-	@return ($px / $base-px) * 1rem;
+	@return ($px / $base-val) * 1rem;
 }
 
 // Calculate ems from a px value
 // ------------------------------
-@function em-calc($px, $base-val: $base-px) {
+@function em-calc($px, $base-val: $base-px-default) {
 	@if not unitless($px) {
 		$px: strip-units($px);
 	}

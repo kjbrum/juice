@@ -8,6 +8,10 @@ $(function() {
 			maxFont   : 16,
 		});
 
+	$('[data-toggle="popover"]').popover({
+		html: true
+	});
+
 	$(document).on('click', '#main-navigation li a, .top, .navbar-brand, .overview-links a', function() {
 		var section = $(this).attr('href'),
 				extra = -9;
@@ -29,4 +33,9 @@ $(function() {
 		}
 	}
 
+	$(document).on('click', '.show-source', function() {
+	  $('pre code').each(function(i, block) {
+	    hljs.highlightBlock(block);
+	  });
+	});
 });

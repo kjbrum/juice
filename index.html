@@ -93,8 +93,77 @@
       </article>
 
       <article id="breakpoints">
-        <h3>Breakpoints</h3>
-        <p><em>Description coming soon</em></p>
+        <div class="article-header"><h3>Breakpoints</h3>
+        <a class="show-source" tabindex="0" role="button" data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content="
+<pre><code class='language-scss'>$hdpi-ratio: 1.3 !default;
+$breakpoints: (
+  'xxlarge':                (min-width: 120.0625em),
+  'xlarge':                 (max-width: 120em),
+  'xlarge-only':            (min-width: 90.0625em) and (max-width: 120em),
+  'large':                  (max-width: 90em),
+  'large-only':             (min-width: 64.0625em) and (max-width: 90em), 
+  'medium':                 (max-width: 64em),
+  'medium-only':            (min-width: 40.0625em) and (max-width: 64em), 
+  'not-small':              (min-width: 40.0625em),
+  'small':                  (max-width: 40em),
+  'xsmall':                 (max-width: 30em),
+  'xxsmall':                (max-width: 20em),
+  'iphone3':                (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-device-pixel-ratio: 1),
+  'iphone3-landscape':      (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-device-pixel-ratio: 1) and (orientation: landscape),
+  'iphone3-portrait':       (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-device-pixel-ratio: 1) and (orientation: portrait),
+  'iphone4':                (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-device-pixel-ratio: 2) and (device-aspect-ratio: 2/3),
+  'iphone4-landscape':      (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-device-pixel-ratio: 2) and (device-aspect-ratio: 2/3) and (orientation: landscape),
+  'iphone4-portrait':       (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-device-pixel-ratio: 2) and (device-aspect-ratio: 2/3) and (orientation: portrait),
+  'iphone5':                (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-device-pixel-ratio: 2) and (device-aspect-ratio: 40/71),
+  'iphone5-landscape':      (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-device-pixel-ratio: 2) and (device-aspect-ratio: 40/71) and (orientation: landscape),
+  'iphone5-portrait':       (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-device-pixel-ratio: 2) and (device-aspect-ratio: 40/71) and (orientation: portrait),
+  'iphone6':                (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-device-pixel-ratio: 2),
+  'iphone6-landscape':      (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape),
+  'iphone6-portrait':       (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait),
+  'iphone6-plus':           (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-device-pixel-ratio: 3),
+  'iphone6-plus-landscape': (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape),
+  'iphone6-plus-portrait':  (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait),
+  'ipad':                   (min-device-width: 768px) and (max-device-width: 1024px),
+  'ipad-landscape':         (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape),
+  'ipad-portrait':          (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait),
+  'ipad-retina':            (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-device-pixel-ratio: 2),
+  'ipad-retina-landscape':  (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape),
+  'ipad-retina-portrait':   (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait),
+  'hdpi':                   '(-webkit-min-device-pixel-ratio: $hdpi-ratio),
+                            only screen and (min--moz-device-pixel-ratio: $hdpi-ratio),
+                            only screen and (-moz-min-device-pixel-ratio: $hdpi-ratio),
+                            only screen and (-o-min-device-pixel-ratio: #{$hdpi-ratio}/1),
+                            only screen and (min-resolution: #{round($hdpi-ratio*96)}dpi),
+                            only screen and (min-resolution: #{$hdpi-ratio}dppx)',
+);
+@mixin bp($break, $viewport1: null) {
+  // Check if we are just passing a default value
+  @if not $viewport1 {
+    @if map-has-key($breakpoints, $break) {
+      @media only screen and #{inspect(map-get($breakpoints, $break))} { @content; }
+    }
+    @else {
+      @warn 'Couldn't find a breakpoint named `#{$break}`.';
+    }
+  }
+  @else {
+    // Min breakpoint
+    @if $break == min {
+      @media screen and (min-width: $viewport1) { @content; }
+    }
+    // Max breakpoint
+    @else if $break == max {
+      @media screen and (max-width: $viewport1) { @content; }
+    }
+    // Custom breakpoint
+    @else {
+      @media screen and (min-width: $break) and (max-width: $viewport1) { @content; }
+    }
+  }
+}</code></pre>"><i class="fa fa-code"></i></a></div>
+        <p class="description">An extensive mixin for easily changing styles for specific media queries.</p>
+        <p><strong>Available preset values:</strong> xxlarge, xlarge, xlarge-only, large, large-only, medium, medium-only, not-small, small, xsmall, xxsmall, iphone3, iphone3-landscape, iphone3-portrait, iphone4, iphone4-landscape, iphone4-portrait, iphone5, iphone5-landscape, iphone5-portrait, iphone6, iphone6-landscape, iphone6-portrait, iphone6-plus, iphone6-plus-landscape, iphone6-plus-portrait, ipad, ipad-landscape, ipad-portrait, ipad-retina, ipad-retina-landscape, ipad-retina-portrait, hdpi.</p>
+        <p><strong>Use preset values:</strong> @include bp(preset)<br><strong>Set a max-width:</strong> @include bp(max,500px)<br><strong>Set a min-width:</strong> @include bp(min,250px)<br><strong>Set a min & max width:</strong> @include bp(500px,1000px)</p>
         <hr>
         <h4>Example:</h4>
 <pre><code class="language-scss">.element {
@@ -108,11 +177,30 @@
     color: black;
   }
 }</code></pre>
+
       </article>
 
       <article id="single-side-border">
-        <h3>Single Side Border Radius</h3>
-        <p><em>Description coming soon</em></p>
+        <div class="article-header"><h3>Single Side Border Radius</h3>
+        <a class="show-source" tabindex="0" role="button" data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content="
+<pre><code class='language-scss'>@mixin border-top-radius($radius: $border-radius-default) {
+  border-top-right-radius: $radius;
+  border-top-left-radius: $radius;
+}
+@mixin border-right-radius($radius: $border-radius-default) {
+  border-top-right-radius: $radius;
+  border-bottom-right-radius: $radius;
+}
+@mixin border-bottom-radius($radius: $border-radius-default) {
+  border-bottom-right-radius: $radius;
+  border-bottom-left-radius: $radius;
+}
+@mixin border-left-radius($radius: $border-radius-default) {
+  border-top-left-radius: $radius;
+  border-bottom-left-radius: $radius;
+}</code></pre>"><i class="fa fa-code"></i></a></div>
+        <p class="description">Apply border radius to a single side of an element.</p>
+        <p><strong>Argument:</strong> $border-radius</p>
         <hr>
         <h4>Example:</h4>
 <pre><code class="language-scss">.element {
@@ -126,8 +214,75 @@
       </article>
 
       <article id="single-transform">
-        <h3>Single Transform</h3>
-        <p><em>Description coming soon</em></p>
+        <div class="article-header"><h3>Single Transform</h3>
+        <a class="show-source" tabindex="0" role="button" data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content="
+<pre><code class='language-scss'>@mixin transform-single($property, $value) {
+  transform: #{$property}unquote('('#{$value}')');
+}
+@mixin rotate($deg) {
+  @include transform-single(rotate, $deg);
+}
+@mixin rotateX($deg) {
+  @include transform-single(rotateX, $deg);
+}
+@mixin rotateY($deg) {
+  @include transform-single(rotateY, $deg);
+}
+@mixin rotateZ($deg) {
+  @include transform-single(rotateZ, $deg);
+}
+@mixin rotate3d($x, $y, $z, $deg) {
+  $multi-var: $x, $y, $z, $deg;
+  @include transform-single(rotate3d, $multi-var);
+}
+@mixin scale($ratio) {
+  @include transform-single(scale, $ratio);
+}
+@mixin scaleX($ratio) {
+  @include transform-single(scaleX, $ratio);
+}
+@mixin scaleY($ratio) {
+  @include transform-single(scaleY, $ratio);
+}
+@mixin scaleZ($ratio) {
+  @include transform-single(scaleZ, $ratio);
+}
+@mixin scale3d($x, $y, $z) {
+  $multi-var: $x, $y, $z;
+  @include transform-single(scale3d, $multi-var);
+}
+@mixin skew($x, $y) {
+  $multi-var: $x, $y;
+  @include transform-single(skew, $multi-var);
+  backface-visibility: hidden;
+}
+@mixin skewX($deg) {
+  @include transform-single(skewX, $deg);
+  backface-visibility: hidden;
+}
+@mixin skewY($deg) {
+  @include transform-single(skewY, $deg);
+  backface-visibility: hidden;
+}
+@mixin translate($x, $y) {
+  $multi-var: $x, $y;
+  @include transform-single(translate, $multi-var);
+}
+@mixin translateX($x) {
+  @include transform-single(translateX, $x);
+}
+@mixin translateY($y) {
+  @include transform-single(translateY, $y);
+}
+@mixin translateZ($z) {
+  @include transform-single(translateZ, $z);
+}
+@mixin translate3d($x, $y, $z) {
+  $multi-var: $x, $y, $z;
+  @include transform-single(translate3d, $multi-var);
+}</code></pre>"><i class="fa fa-code"></i></a></div>
+        <p class="description">Small shortcut mixins to apply a single transform property.</p>
+        <p><strong>Available mixins:</strong> rotate, rotateX, rotateY, rotateZ, rotate3d, scale, scaleX, scaleY, scaleZ, scale3d, skew, skewX, skewY, translate, translateX, translateY, translateZ, translate3d.</p>
         <hr>
         <h4>Example:</h4>
 <pre><code class="language-scss">.element {
@@ -140,8 +295,13 @@
       </article>
 
       <article id="box-emboss">
-        <h3>Box Emboss</h3>
-        <p><em>Description coming soon</em></p>
+        <div class="article-header"><h3>Box Emboss</h3>
+        <a class="show-source" tabindex="0" role="button" data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content="
+<pre><code class='language-scss'>@mixin box-emboss($opacity, $opacity2){
+  box-shadow: rgba(white,$opacity) 0 1px 0, inset rgba(black,$opacity2) 0 1px 0;
+}</code></pre>"><i class="fa fa-code"></i></a></div>
+        <p class="description">Apply an emboss effect to an element.</p>
+        <p><strong>Arguments (decimal):</strong> $opacity, $opacity2</p>
         <hr>
         <h4>Example:</h4>
 <pre><code class="language-scss">.element {
@@ -154,8 +314,13 @@
       </article>
 
       <article id="letterpress">
-        <h3>Letterpress</h3>
-        <p><em>Description coming soon</em></p>
+        <div class="article-header"><h3>Letterpress</h3>
+        <a class="show-source" tabindex="0" role="button" data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content="
+<pre><code class='language-scss'>@mixin letterpress($opacity){
+  text-shadow: rgba(white,$opacity) 0 1px 0;
+}</code></pre>"><i class="fa fa-code"></i></a></div>
+        <p class="description">Apply a letterpress effect to an element's text.</p>
+        <p><strong>Argument (decimal):</strong> $opacity</p>
         <hr>
         <h4>Example:</h4>
 <pre><code class="language-scss">.element {
@@ -168,8 +333,15 @@
       </article>
 
       <article id="placeholder-color">
-        <h3>Placeholder Color</h3>
-        <p><em>Description coming soon</em></p>
+        <div class="article-header"><h3>Placeholder Color</h3>
+        <a class="show-source" tabindex="0" role="button" data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content="
+<pre><code class='language-scss'>@mixin placeholder-color($color: $placeholder-color-default) {
+  &::placeholder {
+    color: $color;
+  }
+}</code></pre>"><i class="fa fa-code"></i></a></div>
+        <p class="description">Set the color of an element's placeholder text.</p>
+        <p><strong>Optional Argument:</strong> $color</p>
         <hr>
         <h4>Example:</h4>
 <pre><code class="language-scss">input {
@@ -182,8 +354,17 @@
       </article>
 
       <article id="sizing">
-        <h3>Sizing</h3>
-        <p><em>Description coming soon</em></p>
+        <div class="article-header"><h3>Sizing</h3>
+        <a class="show-source" tabindex="0" role="button" data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content="
+<pre><code class='language-scss'>@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+@mixin square($size) {
+  @include size($size, $size);
+}</code></pre>"><i class="fa fa-code"></i></a></div>
+        <p class="description">Set an element's width and height. Also able to pass a single value for a square.</p>
+        <p><strong>Set width and height:</strong> @include size(50px, 25px)<br><strong>Create a square (Option 1):</strong> @include size(25px)<br><strong>Create a square (Option 2):</strong> @include square(25px)</p>
         <hr>
         <h4>Example:</h4>
 <pre><code class="language-scss">.element {
@@ -204,8 +385,16 @@
       </article>
 
       <article id="hoverer">
-        <h3>Hoverer</h3>
-        <p><em>Description coming soon</em></p>
+        <div class="article-header"><h3>Hoverer</h3>
+        <a class="show-source" tabindex="0" role="button" data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content="
+<pre><code class='language-scss'>@mixin hoverer($property, $normal, $hovered) {
+  #{$property}: #{$normal};
+  &:hover {
+    #{$property}: #{$hovered};
+  }
+}</code></pre>"><i class="fa fa-code"></i></a></div>
+        <p class="description">Set the value of a property for it's normal and hover states.</p>
+        <p><strong>Arguments:</strong> $property, $normal, $hovered</p>
         <hr>
         <h4>Example:</h4>
 <pre><code class="language-scss">.element {
@@ -221,8 +410,23 @@
       </article>
 
       <article id="responsive">
-        <h3>Responsive</h3>
-        <p><em>Description coming soon</em></p>
+        <div class="article-header"><h3>Responsive</h3>
+        <a class="show-source" tabindex="0" role="button" data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content="
+<pre><code class='language-scss'>@mixin responsive($property, $full, $medium:false, $small:false) {
+  #{$property}: #{$full};
+  @if $medium {
+    @include bp(medium) {
+      #{$property}: #{$medium};
+    }
+  }
+  @if $small {
+    @include bp(small) {
+      #{$property}: #{$small};
+    }
+  }
+}</code></pre>"><i class="fa fa-code"></i></a></div>
+        <p class="description">Set the values for a specific property at 3 different breakpoints.</p>
+        <p><strong>Arguments:</strong> $property, $full, $medium (optional), $small (optional)</p>
         <hr>
         <h4>Example:</h4>
 <pre><code class="language-scss">.element {
@@ -245,8 +449,54 @@
       </article>
 
       <article id="triangle">
-        <h3>Triangle</h3>
-        <p><em>Description coming soon</em></p>
+        <div class="article-header"><h3>Triangle</h3>
+        <a class="show-source" tabindex="0" role="button" data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content="
+<pre><code class='language-scss'>@mixin triangle($direction: $triangle-direction-default,
+                $size: $triangle-size-default,
+                $color: $triangle-color-default,
+                $center: false,
+                $element: $triangle-element-default) {
+
+  &:#{$element} {
+    @if not $center {
+      position: absolute;
+    }
+    content:'';
+    @include square(0);
+    border: #{$size} solid transparent;
+    @if $direction == 'up' {
+      border-bottom-color: #{$color};
+      @if $center {
+        @include absolute(null,null,100%,50%);
+        transform: translateX(-#{$size});
+      }
+    }
+    @if $direction == 'right' {
+      border-left-color: #{$color};
+      @if $center {
+        @include absolute(50%,null,null,100%);
+        transform: translateY(-#{$size});
+      }
+    }
+    @if $direction == 'down' {
+      border-top-color: #{$color};
+      @if $center {
+        @include absolute(100%,null,null,50%);
+        transform: translateX(-#{$size});
+      }
+    }
+    @if $direction == 'left' {
+      border-right-color: #{$color};
+      @if $center {
+        @include absolute(50%,100%);
+        transform: translateY(-#{$size});
+      }
+    }
+    @content;
+  }
+}</code></pre>"><i class="fa fa-code"></i></a></div>
+        <p class="description">Create a pure css triangle with the :after psuedo element.</p>
+        <p><strong>Optional Arguments:</strong> $direction, $size, $color, $center, $element</p>
         <hr>
         <h4>Example:</h4>
 <pre><code class="language-scss">.element {
@@ -270,8 +520,35 @@
       </article>
 
       <article id="position">
-        <h3>Position</h3>
-        <p><em>Description coming soon</em></p>
+        <div class="article-header"><h3>Position</h3>
+        <a class="show-source" tabindex="0" role="button" data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content="
+<pre><code class='language-scss'>@mixin position($type,
+                $top: $position-default,
+                $right: $position-default,
+                $bottom: $position-default,
+                $left: $position-default) {
+  position: #{$type};
+  $allowed_types: 'absolute' 'relative' 'fixed';
+  @if not index($allowed_types, $type) {
+    @warn 'Unknown position: #{$type}.';
+  }
+  @each $data in top $top, right $right, bottom $bottom, left $left {
+    #{nth($data, 1)}: nth($data, 2);
+  }
+}
+@mixin absolute($top: $position-default, $right: $position-default, $bottom: $position-default, $left: $position-default) {
+  @include position('absolute', $top, $right, $bottom, $left);
+}
+@mixin relative($top: $position-default, $right: $position-default, $bottom: $position-default, $left: $position-default) {
+  @include position('relative', $top, $right, $bottom, $left);
+}
+@mixin fixed($top: $position-default, $right: $position-default, $bottom: $position-default, $left: $position-default) {
+  @include position('fixed', $top, $right, $bottom, $left);
+}</code></pre>"><i class="fa fa-code"></i></a></div>
+        <p class="description">Easily set an element's position and "trbl" values.</p>
+        <p><strong>Arguments:</strong> $type, $top, $right, $bottom, $left</p>
+        <p><strong>The long way:</strong> @include position(relative, 5px, 5px, 10px, 15px)<br><strong>Set absolute:</strong> @include absolute(10px, 25px, null, 50px)<br><strong>Set relative:</strong> @include relative(10px, 35px)<br><strong>Set fixed:</strong> @include fixed(null, null, 20px, 20px)</p>
+        <p class="description"><strong>Note:</strong> Pass null as the value if you don't want a "trbl" property to be set.</p>
         <hr>
         <h4>Example:</h4>
 <pre><code class="language-scss">.element {
@@ -281,7 +558,7 @@
   @include absolute(null,25px,25px);
 }
 .relative-element {
-  @include relative(null,5px,5px);
+  @include relative(15px);
 }
 .fixed-element {
   @include fixed(10px,50px);
@@ -299,8 +576,7 @@
 }
 .relative-element {
   position: relative;
-  right: 5px;
-  bottom: 5px;
+  top: 15px;
 }
 .fixed-element {
   position: fixed;
@@ -315,12 +591,25 @@
     <!-- Placeholders Section -->
     <section id="placeholders">
       <article class="section-heading">
-        <h3>Placeholders</h3>
+        <div class="article-header"><h3>Placeholders</h3>
       </article>
 
       <article id="clearfix">
-        <h3>Clearfix</h3>
-        <p><em>Description coming soon</em></p>
+        <div class="article-header"><h3>Clearfix</h3>
+        <a class="show-source" tabindex="0" role="button" data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content="
+<pre><code class='language-scss'>%clearfix {
+  *zoom: 1;
+  &:before,
+  &:after {
+    display: table;
+    content:'';
+    line-height: 0;
+  }
+  &:after {
+    clear: both;
+  }
+}</code></pre>"><i class="fa fa-code"></i></a></div>
+        <p class="description">Just an awesome clearfix.</p>
         <hr>
         <h4>Example:</h4>
 <pre><code class="language-scss">.element {
@@ -342,8 +631,14 @@
       </article>
 
       <article id="hide-text">
-        <h3>Hide Text</h3>
-        <p><em>Description coming soon</em></p>
+        <div class="article-header"><h3>Hide Text</h3>
+        <a class="show-source" tabindex="0" role="button" data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content="
+<pre><code class='language-scss'>%hide-text {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+}</code></pre>"><i class="fa fa-code"></i></a></div>
+        <p class="description">Hide the text in an element.</p>
         <hr>
         <h4>Example:</h4>
 <pre><code class="language-scss">.element {
@@ -358,8 +653,15 @@
       </article>
 
       <article id="centerer">
-        <h3>Centerer</h3>
-        <p><em>Description coming soon</em></p>
+        <div class="article-header"><h3>Centerer</h3>
+        <a class="show-source" tabindex="0" role="button" data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content="
+<pre><code class='language-scss'>%centerer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}</code></pre>"><i class="fa fa-code"></i></a></div>
+        <p class="description">Center an element vertically and horizontally.</p>
         <hr>
         <h4>Example:</h4>
 <pre><code class="language-scss">.element {
@@ -370,13 +672,19 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%,-50%);
 }</code></pre>
       </article>
 
       <article id="vert-centerer">
-        <h3>Vertical Centerer</h3>
-        <p><em>Description coming soon</em></p>
+        <div class="article-header"><h3>Vertical Centerer</h3>
+        <a class="show-source" tabindex="0" role="button" data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content="
+<pre><code class='language-scss'>%vert-centerer {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}</code></pre>"><i class="fa fa-code"></i></a></div>
+        <p class="description">Center an element vertically.</p>
         <hr>
         <h4>Example:</h4>
 <pre><code class="language-scss">.element {
@@ -391,8 +699,16 @@
       </article>
 
       <article id="coverer">
-        <h3>Coverer</h3>
-        <p><em>Description coming soon</em></p>
+        <div class="article-header"><h3>Coverer</h3>
+        <a class="show-source" tabindex="0" role="button" data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content="
+<pre><code class='language-scss'>%coverer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}</code></pre>"><i class="fa fa-code"></i></a></div>
+        <p class="description">Force an element to fill the screen or parent element.</p>
         <hr>
         <h4>Example:</h4>
 <pre><code class="language-scss">.element {
@@ -409,8 +725,14 @@
       </article>
 
       <article id="center-block">
-        <h3>Center Block</h3>
-        <p><em>Description coming soon</em></p>
+        <div class="article-header"><h3>Center Block</h3>
+        <a class="show-source" tabindex="0" role="button" data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content="
+<pre><code class='language-scss'>%center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}</code></pre>"><i class="fa fa-code"></i></a></div>
+        <p class="description">Turn an element into a block and center it with margins.</p>
         <hr>
         <h4>Example:</h4>
 <pre><code class="language-scss">.element {
@@ -430,12 +752,17 @@
     <!-- Funcitons Section -->
     <section id="functions">
       <article class="section-heading">
-        <h3>Functions</h3>
+        <div class="article-header"><h3>Functions</h3>
       </article>
 
       <article id="tint">
-        <h3>Tint</h3>
-        <p><em>Description coming soon</em></p>
+        <div class="article-header"><h3>Tint</h3>
+        <a class="show-source" tabindex="0" role="button" data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content="
+<pre><code class='language-scss'>@function tint($color, $percent: $mix-percent-default){
+  @return mix(white, $color, $percent);
+}</code></pre>"><i class="fa fa-code"></i></a></div>
+        <p class="description">Mix a percentage of white with a color.</p>
+        <p><strong>Arguments:</strong> $color, $mix-percent</p>
         <hr>
         <h4>Example:</h4>
 <pre><code class="language-scss">.element {
@@ -448,8 +775,13 @@
       </article>
 
       <article id="shade">
-        <h3>Shade</h3>
-        <p><em>Description coming soon</em></p>
+        <div class="article-header"><h3>Shade</h3>
+        <a class="show-source" tabindex="0" role="button" data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content="
+<pre><code class='language-scss'>@function shade($color, $percent: $mix-percent-default){
+  @return mix(black, $color, $percent);
+}</code></pre>"><i class="fa fa-code"></i></a></div>
+        <p class="description">Mix a percentage of black with a color.</p>
+        <p><strong>Arguments:</strong> $color, $mix-percent</p>
         <hr>
         <h4>Example:</h4>
 <pre><code class="language-scss">.element {
@@ -462,8 +794,12 @@
       </article>
 
       <article id="strip-units">
-        <h3>Strip Units</h3>
-        <p><em>Description coming soon</em></p>
+        <div class="article-header"><h3>Strip Units</h3>
+        <a class="show-source" tabindex="0" role="button" data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content="
+<pre><code class='language-scss'>@function strip-units($value) {
+  @return $value / ($value * 0 + 1);
+}</code></pre>"><i class="fa fa-code"></i></a></div>
+        <p class="description">Remove any units from a number.</p>
         <hr>
         <h4>Example:</h4>
 <pre><code class="language-scss">.element {
@@ -476,8 +812,18 @@
       </article>
 
       <article id="rem-calc">
-        <h3>Rem Calc</h3>
-        <p>Calculate rems from a px value.</p>
+        <div class="article-header"><h3>Rem Calc</h3>
+        <a class="show-source" tabindex="0" role="button" data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content="
+<pre><code class='language-scss'>@function rem-calc(px, $base-val: $base-px-default) {
+  @if not unitless($px) {
+    $px: strip-units($px);
+  }
+  @if not unitless($base-val) {
+    $base-val: strip-units($base-val);
+  }
+  @return ($px / $base-val) * 1rem;
+}</code></pre>"><i class="fa fa-code"></i></a></div>
+        <p class="description">Calculate rems from a px value.</p>
         <hr>
         <h4>Example:</h4>
 <pre><code class="language-scss">.element {
@@ -490,8 +836,18 @@
       </article>
 
       <article id="em-calc">
-        <h3>Em Calc</h3>
-        <p>Calculate ems from a px value.</p>
+        <div class="article-header"><h3>Em Calc</h3>
+        <a class="show-source" tabindex="0" role="button" data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content="
+<pre><code class='language-scss'>@function em-calc($px, $base-val: $base-px-default) {
+  @if not unitless($px) {
+    $px: strip-units($px);
+  }
+  @if not unitless($base-val) {
+    $base-val: strip-units($base-val);
+  }
+  @return ($px / $base-val) * 1em;
+}</code></pre>"><i class="fa fa-code"></i></a></div>
+        <p class="description">Calculate ems from a px value.</p>
         <hr>
         <h4>Example:</h4>
 <pre><code class="language-scss">.element {
@@ -504,8 +860,15 @@
       </article>
 
       <article id="random-color">
-        <h3>Random Color</h3>
-        <p><em>Description coming soon</em></p>
+        <div class="article-header"><h3>Random Color</h3>
+        <a class="show-source" tabindex="0" role="button" data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content="
+<pre><code class='language-scss'>@function random-color() {
+  $red: random(256)-1;
+  $green: random(256)-1;
+  $blue: random(256)-1;
+  @return rgb($red, $green, $blue);
+}</code></pre>"><i class="fa fa-code"></i></a></div>
+        <p class="description">Generate a random rgb color.</p>
         <hr>
         <h4>Example:</h4>
 <pre><code class="language-scss">.element {
@@ -527,7 +890,7 @@
       </article>
 
       <article id="install">
-        <h3>Installation</h3>
+        <div class="article-header"><h3>Installation</h3></div>
         <p>You can use either bower or just clone the github repo directly.</p>
         <hr>
         <h4>Bower</h4>
@@ -540,11 +903,39 @@
       </article>
 
       <article id="using">
-        <h3>Using the file</h3>
-        <p>Just import the "_juice.scss" file into your main scss file</p>
+        <div class="article-header"><h3>Using the file</h3></div>
+        <p>Just import the "_juice.scss" file into your main scss file.</p>
 <pre><code class="language-scss">// In the SCSS file
 @import "juice"
 </code></pre>
+      </article>
+
+      <article id="settings">
+        <div class="article-header"><h3>Settings</h3></div>
+        <p>You can override these variables in your main scss file to change the default values.</p>
+<pre><code class="language-scss">// Base px
+$base-px-default: 16 !default;
+
+// Breakpoints
+$hdpi-ratio-default: 1.3 !default;
+
+// Border Radius
+$border-radius-default: 5px !default;
+
+// Placeholder Color
+$placeholder-color-default: #555555 !default;
+
+// Triangle
+$triangle-direction-default: "right" !default;
+$triangle-size-default: "10px" !default;
+$triangle-color-default: "#000000" !default;
+$triangle-element-default: "after" !default;
+
+// Position
+$position-default: null !default;
+
+// Tint/Shade
+$mix-percent-default: 15% !default;</code></pre>
       </article>
 
     </section>
