@@ -19,30 +19,46 @@ $(function() {
 		return false;
 	});
 
-	setTop();
-	$(window).scroll(function() {
-		setTop();
+	// Collapse nav when link is clicked
+	$(document).on('click', '.nav a', function(){
+		$(".navbar-toggle").click();
 	});
 
-	function setTop() {
-		var $top = $('.top'),
-				$brand = $('.navbar-brand');
-		if($(this).scrollTop() > 0) {
+	runOnScroll();
+	$(window).scroll(function() {
+		runOnScroll();
+	});
+
+	function runOnScroll() {
+		var scrolled = $(this).scrollTop(),
+				$top = $('.top'),
+				$brand = $('.navbar-brand'),
+				winHeight = $(window).height(),
+				docHeight = $(document).height(),
+				full = docHeight-winHeight-292,
+				scrollPercent = ((scrolled/full)*100-(292/full)*100)+'%';
+
+		// Show/hide back to top button
+		if(scrolled > 0) {
 			$top.addClass('visible');
 		} else {
 			$top.removeClass('visible');
 		}
 
-		if($(this).scrollTop() >= 232) {
+		// Show/hide branding in the header
+		if(scrolled >= 232) {
 			$brand.addClass('visible');
 		} else {
 			$brand.removeClass('visible');
 		}
+
+		// Set pregress bar width
+		$('.progressbar').width(scrollPercent);
 	}
 
 	$(document).on('click', '.show-source', function() {
-	  $('pre code').each(function(i, block) {
-	    hljs.highlightBlock(block);
-	  });
+		$('pre code').each(function(i, block) {
+			hljs.highlightBlock(block);
+		});
 	});
 });

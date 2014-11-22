@@ -1,4 +1,4 @@
-// Juice v0.0.5
+// Juice v0.0.6
 // ------------
 
 // ----------------------------------
@@ -6,7 +6,7 @@
 // ----------------------------------
 
 // Base px
-$base-px-default: 16 !default;
+$base-px-default: 16px !default;
 // Breakpoints
 $hdpi-ratio-default: 1.3 !default;
 // Border Radius
@@ -14,10 +14,16 @@ $border-radius-default: 5px !default;
 // Placeholder Color
 $placeholder-color-default: #555555 !default;
 // Triangle
-$triangle-direction-default: "right" !default;
-$triangle-size-default: "10px" !default;
-$triangle-color-default: "#000000" !default;
-$triangle-element-default: "after" !default;
+$triangle-direction-default: right !default;
+$triangle-size-default: 10px !default;
+$triangle-color-default: #222222 !default;
+$triangle-element-default: after !default;
+// Circle
+$circle-size-default: $base-px-default !default;
+$circle-color-default: inherit !default;
+$circle-border-width-default: null !default;
+$circle-border-color-default: #222222 !default;
+$circle-display-default: inline-block !default;
 // Position
 $position-default: null !default;
 // Tint/Shade
@@ -289,6 +295,32 @@ $breakpoints: (
 	}
 }
 
+// Create a circle, with an optional border
+@mixin circle($size: $circle-size-default,
+  					$color: $circle-color-default,
+  					$border-width: $circle-border-width-default,
+  					$border-color: $circle-border-color-default,
+  					$display: $circle-display-default) {
+  display: $display;
+  border-radius: 50%;
+  @if $border-width {
+    @include square($size);
+    background-color: $color;
+    border: $border-width solid $border-color;
+  }
+	@else{
+    @if $color == inherit {
+      border-width: $size/2;
+      border-style: solid;
+      @include square(0);
+    }
+    @else {
+      @include square($size);
+      background-color: $color;
+    }
+  }
+}
+
 // Advanced positioning
 // --------------------
 @mixin position($type,
@@ -432,4 +464,15 @@ $breakpoints: (
 	$green: random(256)-1;
 	$blue: random(256)-1;
 	@return rgb($red, $green, $blue);
+}
+
+// Reverse a string
+// ----------------
+@function reverse($string) {
+	$reversed-string: "";
+	@for $i from 1 through str-length($string) {
+		$char: str-slice($string, $i, $i);
+		$reversed-string: "#{$char}#{$reversed-string}";
+	}
+	@return #{$reversed-string};
 }

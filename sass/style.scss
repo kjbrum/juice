@@ -4,6 +4,7 @@
 // Partials
 @import "colors";
 @import "fonts";
+@import "csshake";
 
 // Twitter Bootstrap
 @import "variables";
@@ -69,6 +70,10 @@ p {
 ///////////////////////////////////
 .navbar {
 	border: 0;
+	background-color: transparent;
+	.container-fluid {
+		background-color: $dark-blue;
+	}
 }
 .navbar-header {
 	position: relative;
@@ -111,6 +116,13 @@ p {
 .navbar-default .navbar-nav > .active > a:focus {
 	background: $teal;
 	color: $dark-blue;
+}
+
+.progressbar {
+	float: left;
+	// height: 5px;
+	background: $teal;
+	@extend %coverer;
 }
 
 .hero {
@@ -223,19 +235,19 @@ article:not(.section-heading) {
 }
 
 .popover-content {
-	padding: 11px;
+	padding: 11px 11px 0 11px;
 }
 
 ///////////////////////////////////
 // Setup
 ///////////////////////////////////
 .download-repo {
-	border: 1px solid $purple;
+	border: 1px solid $dark-blue;
 	color: $dark-blue;
 	padding: 10px 15px;
 	&:hover {
-		color: $dark-blue;
-		border-color: $teal;
+		color: $purple;
+		border-color: $purple;
 	}
 }
 
@@ -246,14 +258,13 @@ article:not(.section-heading) {
 
 pre {
 	padding: 0 !important;
-}
-code {
-	padding: 20px !important;
-	@include bp(max, rem-calc(768)) {
-		font-size: 1.2rem !important;
+	code {
+		padding: 20px !important;
+		@include bp(max, rem-calc(768)) {
+			font-size: 1.2rem !important;
+		}
 	}
 }
-
 
 ///////////////////////////////////
 // Footer
@@ -294,7 +305,7 @@ footer {
   .fa-heart {
   	padding: 0 4px;
   	color: #ff5555;
-  	animation: pulse 1s ease-in-out infinite alternate;
+  	// animation: pulse 1s ease-in-out infinite alternate;
   }
   a {
   	color: $white;
