@@ -120,8 +120,8 @@ p {
 
 .progressbar {
 	float: left;
-	// height: 5px;
-	background: $teal;
+	// background: $teal;
+	background: tint($dark-blue,10%);
 	@extend %coverer;
 }
 

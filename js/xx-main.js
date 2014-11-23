@@ -21,7 +21,9 @@ $(function() {
 
 	// Collapse nav when link is clicked
 	$(document).on('click', '.nav a', function(){
-		$(".navbar-toggle").click();
+		if($(window).width() <= 768) {
+			$(".navbar-toggle").click();
+		}
 	});
 
 	runOnScroll();
