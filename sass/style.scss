@@ -125,7 +125,19 @@ p {
 	@extend %coverer;
 }
 
+@keyframes fadeUp {
+	from {
+		transform: translateY(40px);
+		opacity: 0;
+	}
+	to {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
 .hero {
+	position: relative;
 	text-align: center;
 	background: $dark-blue;
 	padding: 80px 0 40px;
@@ -137,9 +149,11 @@ p {
 	h1 {
 		color: $purple;
 		font-size: 11rem;
+		animation: fadeUp 1.5s;
 	}
 	h2 {
 		color: $white;
+		animation: fadeUp 1.5s 0.25s;
 	}
 }
 
@@ -258,6 +272,9 @@ article:not(.section-heading) {
 
 pre {
 	padding: 0 !important;
+	* {
+		transition: 0 !important;
+	}
 	code {
 		padding: 20px !important;
 		@include bp(max, rem-calc(768)) {

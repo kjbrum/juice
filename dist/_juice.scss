@@ -247,9 +247,8 @@ $breakpoints: (
 	}
 }
 
-// Create a triangle using borders (add in the option to make a border)
-// Cut down on the code (Use sass maps for "trbl" and translate direction, maybe even direction and border direction)
-// http://cssarrowplease.com/
+// Create a triangle using borders (add in the option to make a border and triangle shape)
+// Cut down on the code (Use sass maps for "trbl" and translate direction, maybe direction and border direction)
 // ------------------------------------------------------------------------------------------------------------------
 @mixin triangle($direction: $triangle-direction-default,
 								$size: $triangle-size-default,
@@ -262,6 +261,7 @@ $breakpoints: (
 		}
 		content:'';
 		@include square(0);
+		-webkit-transform: rotate(360deg);
 		border-style: solid;
 		@if $direction == up {
 			border-width: 0 $size ($size*1.625) $size;
