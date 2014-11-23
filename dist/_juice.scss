@@ -1,4 +1,4 @@
-// Juice v0.0.6
+// Juice v0.0.7
 // ------------
 
 // ----------------------------------
@@ -15,7 +15,7 @@ $border-radius-default: 5px !default;
 $placeholder-color-default: #555555 !default;
 // Triangle
 $triangle-direction-default: right !default;
-$triangle-size-default: 10px !default;
+$triangle-size-default: $base-px-default !default;
 $triangle-color-default: #222222 !default;
 $triangle-element-default: after !default;
 // Circle
@@ -83,7 +83,7 @@ $breakpoints: (
 			@media only screen and #{inspect(map-get($breakpoints, $break))} { @content; }
 		}
 		@else {
-			@warn "Couldn't find a breakpoint named `#{$break}`.";
+			@warn "Couldn't find a breakpoint named #{$break}.";
 		}
 	}
 	@else {
@@ -126,7 +126,7 @@ $breakpoints: (
 // Transforms
 // ----------
 @mixin transform-single($property, $value) {
-	transform: #{$property}unquote("("#{$value}")");
+	transform: #{$property}unquote('('#{$value}')');
 }
 @mixin rotate($deg) {
 	@include transform-single(rotate, $deg);
@@ -225,24 +225,24 @@ $breakpoints: (
 // Normal & hover state
 // --------------------
 @mixin hoverer($property, $normal, $hovered) {
-	#{$property}: #{$normal};
+	#{$property}: $normal;
 	&:hover {
-		#{$property}: #{$hovered};
+		#{$property}: $hovered;
 	}
 }
 
 // Add responsive styling for multiple breakpoints
 // -----------------------------------------------
 @mixin responsive($property, $full, $medium:false, $small:false) {
-	#{$property}: #{$full};
+	#{$property}: $full;
 	@if $medium {
 		@include bp(medium) {
-			#{$property}: #{$medium};
+			#{$property}: $medium;
 		}
 	}
 	@if $small {
 		@include bp(small) {
-			#{$property}: #{$small};
+			#{$property}: $small;
 		}
 	}
 }
@@ -260,36 +260,71 @@ $breakpoints: (
 		@if not $center {
 			position: absolute;
 		}
-		content:"";
+		content:'';
 		@include square(0);
-		border: #{$size} solid transparent;
-		@if $direction == "up" {
-			border-bottom-color: #{$color};
+		border-style: solid;
+		@if $direction == up {
+			border-width: 0 $size ($size*1.625) $size;
+			border-color: transparent transparent $color transparent;
 			@if $center {
 				@include absolute(null,null,100%,50%);
-				transform: translateX(-#{$size});
+				transform: translateX(-$size);
 			}
 		}
-		@if $direction == "right" {
-			border-left-color: #{$color};
+		@else if $direction == up-right {
+			border-width: 0 $size $size 0;
+			border-color: transparent $color transparent transparent;
+			@if $center {
+				@include absolute(0,0);
+			}
+		}
+		@else if $direction == right {
+			border-width: $size 0 $size ($size*1.625);
+			border-color: transparent transparent transparent $color;
 			@if $center {
 				@include absolute(50%,null,null,100%);
-				transform: translateY(-#{$size});
+				transform: translateY(-$size);
 			}
 		}
-		@if $direction == "down" {
-			border-top-color: #{$color};
+		@else if $direction == down-right {
+			border-width: 0 0 $size $size;
+			border-color: transparent transparent $color transparent;
+			@if $center {
+				@include absolute(null,0,0);
+			}
+		}
+		@else if $direction == down {
+			border-width: ($size*1.625) $size 0 $size;
+			border-color: $color transparent transparent transparent;
 			@if $center {
 				@include absolute(100%,null,null,50%);
-				transform: translateX(-#{$size});
+				transform: translateX(-$size);
 			}
 		}
-		@if $direction == "left" {
-			border-right-color: #{$color};
+		@else if $direction == down-left {
+			border-width: $size 0 0 $size;
+			border-color: transparent transparent transparent $color;
+			@if $center {
+				@include absolute(null,null,0,0);
+			}
+		}
+		@else if $direction == left {
+			border-width: $size ($size*1.625) $size 0;
+			border-color: transparent $color transparent transparent;
 			@if $center {
 				@include absolute(50%,100%);
-				transform: translateY(-#{$size});
+				transform: translateY(-$size);
 			}
+		}
+		@else if $direction == up-left {
+			border-width: $size $size 0 0;
+			border-color: $color transparent transparent transparent;
+			@if $center {
+				@include absolute(0,null,null,0);
+			}
+		}
+		@else {
+			@warn "Available directions: up, up-right, right, down-right, down, down-left, left, up-left.";
 		}
 		@content;
 	}
@@ -297,28 +332,28 @@ $breakpoints: (
 
 // Create a circle, with an optional border
 @mixin circle($size: $circle-size-default,
-  					$color: $circle-color-default,
-  					$border-width: $circle-border-width-default,
-  					$border-color: $circle-border-color-default,
-  					$display: $circle-display-default) {
-  display: $display;
-  border-radius: 50%;
-  @if $border-width {
-    @include square($size);
-    background-color: $color;
-    border: $border-width solid $border-color;
-  }
+						$color: $circle-color-default,
+						$border-width: $circle-border-width-default,
+						$border-color: $circle-border-color-default,
+						$display: $circle-display-default) {
+	display: $display;
+	border-radius: 50%;
+	@if $border-width {
+		@include square($size);
+		background-color: $color;
+		border: $border-width solid $border-color;
+	}
 	@else{
-    @if $color == inherit {
-      border-width: $size/2;
-      border-style: solid;
-      @include square(0);
-    }
-    @else {
-      @include square($size);
-      background-color: $color;
-    }
-  }
+		@if $color == inherit {
+			border-width: $size/2;
+			border-style: solid;
+			@include square(0);
+		}
+		@else {
+			@include square($size);
+			background-color: $color;
+		}
+	}
 }
 
 // Advanced positioning
@@ -328,8 +363,8 @@ $breakpoints: (
 								$right: $position-default,
 								$bottom: $position-default,
 								$left: $position-default) {
-	position: #{$type};
-	$allowed_types: "absolute" "relative" "fixed";
+	position: $type;
+	$allowed_types: absolute relative fixed;
 	@if not index($allowed_types, $type) {
 		@warn "Unknown position: #{$type}.";
 	}
@@ -338,13 +373,13 @@ $breakpoints: (
 	}
 }
 @mixin absolute($top: $position-default, $right: $position-default, $bottom: $position-default, $left: $position-default) {
-	@include position("absolute", $top, $right, $bottom, $left);
+	@include position(absolute, $top, $right, $bottom, $left);
 }
 @mixin relative($top: $position-default, $right: $position-default, $bottom: $position-default, $left: $position-default) {
-	@include position("relative", $top, $right, $bottom, $left);
+	@include position(relative, $top, $right, $bottom, $left);
 }
 @mixin fixed($top: $position-default, $right: $position-default, $bottom: $position-default, $left: $position-default) {
-	@include position("fixed", $top, $right, $bottom, $left);
+	@include position(fixed, $top, $right, $bottom, $left);
 }
 
 
@@ -359,7 +394,7 @@ $breakpoints: (
 	&:before,
 	&:after {
 		display: table;
-		content:"";
+		content:'';
 		line-height: 0;
 	}
 	&:after {
@@ -469,7 +504,7 @@ $breakpoints: (
 // Reverse a string
 // ----------------
 @function reverse($string) {
-	$reversed-string: "";
+	$reversed-string: '';
 	@for $i from 1 through str-length($string) {
 		$char: str-slice($string, $i, $i);
 		$reversed-string: "#{$char}#{$reversed-string}";

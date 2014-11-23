@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="favicon.png"/>
     <title>Juice: Mixins for life</title>
     <link href="build/css/style.css?v=1" rel="stylesheet">
 
@@ -390,9 +391,9 @@
         <div class="article-header"><h3>Hoverer</h3>
         <a class="show-source" tabindex="0" role="button" data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content="
 <pre><code class='language-scss'>@mixin hoverer($property, $normal, $hovered) {
-  #{$property}: #{$normal};
+  #{$property}: $normal;
   &:hover {
-    #{$property}: #{$hovered};
+    #{$property}: $hovered;
   }
 }</code></pre>"><i class="fa fa-code"></i></a></div>
         <p class="description">Set the value of a property for it's normal and hover states.</p>
@@ -415,15 +416,15 @@
         <div class="article-header"><h3>Responsive</h3>
         <a class="show-source" tabindex="0" role="button" data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content="
 <pre><code class='language-scss'>@mixin responsive($property, $full, $medium:false, $small:false) {
-  #{$property}: #{$full};
+  #{$property}: $full;
   @if $medium {
     @include bp(medium) {
-      #{$property}: #{$medium};
+      #{$property}: $medium;
     }
   }
   @if $small {
     @include bp(small) {
-      #{$property}: #{$small};
+      #{$property}: $small;
     }
   }
 }</code></pre>"><i class="fa fa-code"></i></a></div>
@@ -458,66 +459,101 @@
                 $color: $triangle-color-default,
                 $center: false,
                 $element: $triangle-element-default) {
-
   &:#{$element} {
     @if not $center {
       position: absolute;
     }
     content:'';
     @include square(0);
-    border: #{$size} solid transparent;
-    @if $direction == 'up' {
-      border-bottom-color: #{$color};
+    border-style: solid;
+    @if $direction == up {
+      border-width: 0 $size ($size*1.625) $size;
+      border-color: transparent transparent $color transparent;
       @if $center {
         @include absolute(null,null,100%,50%);
-        transform: translateX(-#{$size});
+        transform: translateX(-$size);
       }
     }
-    @if $direction == 'right' {
-      border-left-color: #{$color};
+    @else if $direction == up-right {
+      border-width: 0 $size $size 0;
+      border-color: transparent $color transparent transparent;
+      @if $center {
+        @include absolute(0,0);
+      }
+    }
+    @else if $direction == right {
+      border-width: $size 0 $size ($size*1.625);
+      border-color: transparent transparent transparent $color;
       @if $center {
         @include absolute(50%,null,null,100%);
-        transform: translateY(-#{$size});
+        transform: translateY(-$size);
       }
     }
-    @if $direction == 'down' {
-      border-top-color: #{$color};
+    @else if $direction == down-right {
+      border-width: 0 0 $size $size;
+      border-color: transparent transparent $color transparent;
+      @if $center {
+        @include absolute(null,0,0);
+      }
+    }
+    @else if $direction == down {
+      border-width: ($size*1.625) $size 0 $size;
+      border-color: $color transparent transparent transparent;
       @if $center {
         @include absolute(100%,null,null,50%);
-        transform: translateX(-#{$size});
+        transform: translateX(-$size);
       }
     }
-    @if $direction == 'left' {
-      border-right-color: #{$color};
+    @else if $direction == down-left {
+      border-width: $size 0 0 $size;
+      border-color: transparent transparent transparent $color;
+      @if $center {
+        @include absolute(null,null,0,0);
+      }
+    }
+    @else if $direction == left {
+      border-width: $size ($size*1.625) $size 0;
+      border-color: transparent $color transparent transparent;
       @if $center {
         @include absolute(50%,100%);
-        transform: translateY(-#{$size});
+        transform: translateY(-$size);
       }
+    }
+    @else if $direction == up-left {
+      border-width: $size $size 0 0;
+      border-color: $color transparent transparent transparent;
+      @if $center {
+        @include absolute(0,null,null,0);
+      }
+    }
+    @else {
+      @warn 'Available directions: up, up-right, right, down-right, down, down-left, left, up-left.';
     }
     @content;
   }
 }</code></pre>"><i class="fa fa-code"></i></a></div>
         <p class="description">Create a triangle with the :after psuedo element.</p>
         <p><strong>Optional Arguments:</strong> $direction, $size, $color, $center, $element</p>
+        <p><strong>Available directions:</strong> up, up-right, right, down-right, down, down-left, left, up-left</p>
         <hr>
         <h4>Example:</h4>
 <pre><code class="language-scss">.element {
-  @include triangle($color:grey, $center:true) {
-    border-radius: 5px;
+  @include triangle(up-right, 50px, grey, true, before) {
+    background-color: red;
   }
 }</code></pre>
           <h4>CSS Output:</h4>
-<pre><code class="language-scss">.element:after {
+<pre><code class="language-scss">.element:before {
   content: '';
   width: 0;
   height: 0;
-  border: 0.5rem solid transparent;
-  border-left-color: grey;
+  border-style: solid;
+  border-width: 0 50px 50px 0;
+  border-color: transparent grey transparent transparent;
   position: absolute;
-  top: 50%;
-  left: 100%;
-  transform: translateY(-0.5rem);
-  border-radius: 5px;
+  top: 0;
+  right: 0;
+  background-color: red;
 }</code></pre>
       </article>
 
@@ -574,8 +610,8 @@
                 $right: $position-default,
                 $bottom: $position-default,
                 $left: $position-default) {
-  position: #{$type};
-  $allowed_types: 'absolute' 'relative' 'fixed';
+  position: $type;
+  $allowed_types: absolute relative fixed;
   @if not index($allowed_types, $type) {
     @warn 'Unknown position: #{$type}.';
   }
@@ -584,13 +620,13 @@
   }
 }
 @mixin absolute($top: $position-default, $right: $position-default, $bottom: $position-default, $left: $position-default) {
-  @include position('absolute', $top, $right, $bottom, $left);
+  @include position(absolute, $top, $right, $bottom, $left);
 }
 @mixin relative($top: $position-default, $right: $position-default, $bottom: $position-default, $left: $position-default) {
-  @include position('relative', $top, $right, $bottom, $left);
+  @include position(relative, $top, $right, $bottom, $left);
 }
 @mixin fixed($top: $position-default, $right: $position-default, $bottom: $position-default, $left: $position-default) {
-  @include position('fixed', $top, $right, $bottom, $left);
+  @include position(fixed, $top, $right, $bottom, $left);
 }</code></pre>"><i class="fa fa-code"></i></a></div>
         <p class="description">Easily set an element's position and "trbl" values.</p>
         <p><strong>Arguments:</strong> $type, $top, $right, $bottom, $left</p>
@@ -928,7 +964,7 @@
       </article>
 
       <article id="reverse">
-        <div class="article-header"><h3>Reverse</h3>
+        <div class="article-header"><h3>Reverse String</h3>
         <a class="show-source" tabindex="0" role="button" data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content="
 <pre><code class='language-scss'>@function reverse($string) {
   $reversed-string: '';
