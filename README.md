@@ -17,7 +17,9 @@
 + Responsive
 + Triangle
 + Circle
++ Square
 + Position
++ TRBL
 
 ##### Placeholders
 
@@ -42,7 +44,5 @@
 
 #### To-do:
 
-+ TRBL mixin (Set the values of top, right, bottom, and left, without having to set the position)
-+ Square/rectangle mixin (Create a square/rectangle similar to the circle mixin)
-+ Cut down on the code for triangle mixin (Use sass maps for "trbl" and translate direction, maybe direction and border direction also)
++ Cut down on the code for triangle mixin (Use sass maps for "trbl" and translate direction, maybe direction and border direction also) (add in the option to make a border and triangle shape)
 + Turn placeholders into argument-less mixins?

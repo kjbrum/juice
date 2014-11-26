@@ -227,9 +227,6 @@ $breakpoints: (
 	width: $width;
 	height: $height;
 }
-// @mixin square($size) {
-// 	@include size($size, $size);
-// }
 
 // Normal & hover state
 // --------------------
@@ -256,8 +253,7 @@ $breakpoints: (
 	}
 }
 
-// Create a triangle using borders (add in the option to make a border and triangle shape)
-// Cut down on the code (Use sass maps for "trbl" and translate direction, maybe direction and border direction)
+// Create a triangle using borders
 // ------------------------------------------------------------------------------------------------------------------
 @mixin triangle($direction: $triangle-direction-default,
 								$size: $triangle-size-default,
@@ -269,7 +265,9 @@ $breakpoints: (
 			position: absolute;
 		}
 		content:'';
-		@include size(0);
+		// @include size(0);
+		width: 0;
+		height: 0;
 		-webkit-transform: rotate(360deg);
 		border-style: solid;
 		@if $direction == up {
