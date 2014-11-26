@@ -7,9 +7,10 @@
     <link rel="shortcut icon" type="image/png" href="favicon.png"/>
     <title>Juice: Mixins for life</title>
     <link href="build/css/style.css?v=2" rel="stylesheet">
-
   </head>
   <body id="top" data-spy="scroll" data-target=".navbar-collapse">
+    <a href="https://github.com/kjbrum/juice" target="_blank" onclick="_gaq.push(['_trackEvent', 'Engagement', 'Click', 'GitHub Ribbon']);"><img style="position:absolute;top:0;left:0;border:0;z-index:9999" src="https://camo.githubusercontent.com/567c3a48d796e2fc06ea80409cc9dd82bf714434/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png"></a>
+
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="progressbar" role="progressbar" style="width: 0%;"></div>
       <div class="container-fluid">
@@ -60,7 +61,9 @@
                 <li><a href="#responsive">Responsive</a></li>
                 <li><a href="#triangle">Triangle</a></li>
                 <li><a href="#circle">Circle</a></li>
+                <li><a href="#square">Square</a></li>
                 <li><a href="#position">Position</a></li>
+                <li><a href="#trbl">TRBL</a></li>
               </ul>
             </div>
             <div class="col-xs-4">
@@ -101,12 +104,15 @@
         <a class="show-source" tabindex="0" role="button" data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content="
 <pre><code class='language-scss'>$breakpoints: (
   'xxlarge':  (min-width: 120.0625em),
-  'xlarge': (max-width: 120em),
   'xlarge-only':  (min-width: 90.0625em) and (max-width: 120em),
-  'large':  (max-width: 90em),
+  'xlarge-up':  (min-width: 90.0625em),
+  'xlarge': (max-width: 120em),
   'large-only': (min-width: 64.0625em) and (max-width: 90em),
-  'medium': (max-width: 64em),
+  'large-up': (min-width: 64.0625em),
+  'large':  (max-width: 90em),
   'medium-only':  (min-width: 40.0625em) and (max-width: 64em),
+  'medium-up':  (min-width: 40.0625em),
+  'medium': (max-width: 64em),
   'not-small':  (min-width: 40.0625em),
   'small':  (max-width: 40em),
   'xsmall': (max-width: 30em),
@@ -146,7 +152,7 @@
       @media only screen and #{inspect(map-get($breakpoints, $break))} { @content; }
     }
     @else {
-      @warn 'Couldn't find a breakpoint named `#{$break}`.';
+      @warn 'Couldn't find a breakpoint named #{$break}.';
     }
   }
   @else {
@@ -165,7 +171,7 @@
   }
 }</code></pre>"><i class="fa fa-code"></i></a></div>
         <p class="description">An extensive mixin for easily changing styles for specific media queries.</p>
-        <p><strong>Available preset values:</strong> xxlarge, xlarge, xlarge-only, large, large-only, medium, medium-only, not-small, small, xsmall, xxsmall, iphone3, iphone3-landscape, iphone3-portrait, iphone4, iphone4-landscape, iphone4-portrait, iphone5, iphone5-landscape, iphone5-portrait, iphone6, iphone6-landscape, iphone6-portrait, iphone6-plus, iphone6-plus-landscape, iphone6-plus-portrait, ipad, ipad-landscape, ipad-portrait, ipad-retina, ipad-retina-landscape, ipad-retina-portrait, hdpi.</p>
+        <p><strong>Available preset values:</strong> xxlarge, xlarge-only, xlarge-up, xlarge, large-only, large-up, large, medium-only, medium-up, medium, not-small, small, xsmall, xxsmall, iphone3, iphone3-landscape, iphone3-portrait, iphone4, iphone4-landscape, iphone4-portrait, iphone5, iphone5-landscape, iphone5-portrait, iphone6, iphone6-landscape, iphone6-portrait, iphone6-plus, iphone6-plus-landscape, iphone6-plus-portrait, ipad, ipad-landscape, ipad-portrait, ipad-retina, ipad-retina-landscape, ipad-retina-portrait, hdpi.</p>
         <p><strong>Use preset values:</strong> @include bp(preset)<br><strong>Set a max-width:</strong> @include bp(max,500px)<br><strong>Set a min-width:</strong> @include bp(min,250px)<br><strong>Set a min & max width:</strong> @include bp(500px,1000px)</p>
         <hr>
         <h4>Example:</h4>
@@ -367,13 +373,13 @@
   @include size($size, $size);
 }</code></pre>"><i class="fa fa-code"></i></a></div>
         <p class="description">Set an element's width and height. Also able to pass a single value for a square.</p>
-        <p><strong>Set width and height:</strong> @include size(50px, 25px)<br><strong>Create a square (Option 1):</strong> @include size(25px)<br><strong>Create a square (Option 2):</strong> @include square(25px)</p>
+        <p><strong>Set width and height:</strong> @include size(50px, 25px)<br><strong>Create a square (Option 1):</strong> @include size(25px)</p>
         <hr>
         <h4>Example:</h4>
 <pre><code class="language-scss">.element {
   @include size(25px,100px);
   &:after {
-    @include square(10px);
+    @include size(10px);
   }
 }</code></pre>
           <h4>CSS Output:</h4>
@@ -532,7 +538,7 @@
     @content;
   }
 }</code></pre>"><i class="fa fa-code"></i></a></div>
-        <p class="description">Create a triangle with the :after psuedo element.</p>
+        <p class="description">Create a psuedo element triangle.</p>
         <p><strong>Optional Arguments:</strong> $direction, $size, $color, $center, $element</p>
         <p><strong>Available directions:</strong> up, up-right, right, down-right, down, down-left, left, up-left</p>
         <hr>
@@ -602,6 +608,43 @@
 }</code></pre>
       </article>
 
+      <article id="square">
+        <div class="article-header"><h3>Square</h3>
+        <a class="show-source" tabindex="0" role="button" data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content="
+<pre><code class='language-scss'>@mixin square($size: $square-size-default,
+              $color: $square-color-default,
+              $border-width: $square-border-width-default,
+              $border-color: $square-border-color-default,
+              $element: $square-element-default) {
+  &:#{$element} {
+    content: '';
+    position: absolute;
+    @include size($size);
+    background: $color;
+    @if $border-width {
+      border: $border-width solid $border-color;
+    }
+  }
+}
+}</code></pre>"><i class="fa fa-code"></i></a></div>
+        <p class="description">Create a psuedo element square, with an optional border.</p>
+        <p><strong>Optional Arguments:</strong> $size, $color, $border-width, $border-color, $element</p>
+        <hr>
+        <h4>Example:</h4>
+<pre><code class="language-scss">.element {
+  @include square(25px, blue, 2px, teal);
+}</code></pre>
+          <h4>CSS Output:</h4>
+<pre><code class="language-scss">.element:after {
+  content: '';
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  background: blue;
+  border: 2px solid teal;
+}</code></pre>
+      </article>
+
       <article id="position">
         <div class="article-header"><h3>Position</h3>
         <a class="show-source" tabindex="0" role="button" data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content="
@@ -665,6 +708,45 @@
   position: fixed;
   top: 10px;
   right: 50px;
+}</code></pre>
+      </article>
+
+      <article id="trbl">
+        <div class="article-header"><h3>TRBL</h3>
+        <a class="show-source" tabindex="0" role="button" data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content="
+<pre><code class='language-scss'>@mixin trbl($top: $position-default,
+            $right: $position-default,
+            $bottom: $position-default,
+            $left: $position-default) {
+  @each $data in top $top, right $right, bottom $bottom, left $left {
+    #{nth($data, 1)}: nth($data, 2);
+  }
+}
+@mixin top-left {
+  @include trbl(0,null,null,0);
+}
+@mixin top-right {
+  @include trbl(0,0);
+}
+@mixin bottom-left {
+  @include trbl(null,null,0,0);
+}
+@mixin bottom-right {
+  @include trbl(null,0,0,null);
+}</code></pre>"><i class="fa fa-code"></i></a></div>
+        <p class="description">Easily set an element's "trbl" values.</p>
+        <p><strong>Arguments:</strong> $top, $right, $bottom, $left</p>
+        <p><strong>Extra Mixins:</strong> top-left, top-right, bottom-left, bottom-right</p>
+        <p class="description"><strong>Note:</strong> Pass null as the value if you don't want a property to be set.</p>
+        <hr>
+        <h4>Example:</h4>
+<pre><code class="language-scss">.element {
+  @include trbl(55px,null,null,15px);
+}</code></pre>
+          <h4>CSS Output:</h4>
+<pre><code class="language-scss">.element {
+  top: 55px;
+  left: 15px;
 }</code></pre>
       </article>
 
@@ -945,21 +1027,32 @@
       <article id="random-color">
         <div class="article-header"><h3>Random Color</h3>
         <a class="show-source" tabindex="0" role="button" data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content="
-<pre><code class='language-scss'>@function random-color() {
-  $red: random(256)-1;
-  $green: random(256)-1;
-  $blue: random(256)-1;
-  @return rgb($red, $green, $blue);
+<pre><code class='language-scss'>@function random-color($min: 0, $max: 255, $alpha: 1) {
+  @if $min < 0 {
+    $min: -1;
+  } @else {
+    $min: $min - 1;
+  }
+  @if $max > 255 {
+    $max: 256;
+  } @else {
+    $max: $max + 1;
+  }
+  $red: random($max) + $min;
+  $green: random($max) + $min;
+  $blue: random($max) + $min;
+  @return rgba($red, $green, $blue, $alpha);
 }</code></pre>"><i class="fa fa-code"></i></a></div>
-        <p class="description">Generate a random rgb color.</p>
+        <p class="description">Generate a random hex or rgb color from rgb values.</p>
+        <p><strong>Optional Arguments: $min(0-255), $max(0-255), $alpha(0-1)
         <hr>
         <h4>Example:</h4>
 <pre><code class="language-scss">.element {
-  background-color: random-color();
+  background-color: random-color(50,150,0.75);
 }</code></pre>
           <h4>CSS Output:</h4>
 <pre><code class="language-scss">.element {
-  background-color: #f7b2db;
+  background-color: rgba(143, 56, 61, 0.75);
 }</code></pre>
       </article>
 
@@ -1029,7 +1122,7 @@ $border-radius-default: 5px !default;
 $placeholder-color-default: #555555 !default;
 // Triangle
 $triangle-direction-default: right !default;
-$triangle-size-default: 10px !default;
+$triangle-size-default: $base-px-default !default;
 $triangle-color-default: #222222 !default;
 $triangle-element-default: after !default;
 // Circle
@@ -1038,6 +1131,12 @@ $circle-color-default: inherit !default;
 $circle-border-width-default: null !default;
 $circle-border-color-default: #222222 !default;
 $circle-display-default: inline-block !default;
+// Square
+$square-size-default: $base-px-default !default;
+$square-color-default: black !default;
+$square-border-width-default: null !default;
+$square-border-color-default: grey !default;
+$square-element-default: after !default;
 // Position
 $position-default: null !default;
 // Tint/Shade
@@ -1048,12 +1147,22 @@ $mix-percent-default: 15% !default;</code></pre>
 
     <a class="top" href="#top"></a>
     <footer>
-      <p>Built with <i class="shake shake-constant fa fa-heart"></i> by <a href="http://kylebrumm.com">Kyle Brumm</a></p>
+      <p>Built with <i class="shake shake-constant fa fa-heart"></i> by <a href="http://kylebrumm.com" onclick="_gaq.push(['_trackEvent', 'Engagement', 'Click', 'Link to Portfolio']);">Kyle Brumm</a></p>
     </footer>
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="build/js/main.min.js?v=2"></script>
     <script>hljs.initHighlightingOnLoad();</script>
+    <!-- Google Analytics -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-57115824-1', 'auto');
+      ga('send', 'pageview');
+    </script>
   </body>
 </html>

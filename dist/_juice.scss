@@ -1,4 +1,4 @@
-// Juice v0.0.7
+// Juice v0.0.8
 // ------------
 
 // ----------------------------------
@@ -24,6 +24,12 @@ $circle-color-default: inherit !default;
 $circle-border-width-default: null !default;
 $circle-border-color-default: #222222 !default;
 $circle-display-default: inline-block !default;
+// Square
+$square-size-default: $base-px-default !default;
+$square-color-default: black !default;
+$square-border-width-default: null !default;
+$square-border-color-default: grey !default;
+$square-element-default: before !default;
 // Position
 $position-default: null !default;
 // Tint/Shade
@@ -38,12 +44,15 @@ $mix-percent-default: 15% !default;
 // -----------
 $breakpoints: (
 	"xxlarge":	(min-width: 120.0625em),														// >= 1921px
-	"xlarge":	(max-width: 120em),																		// <= 1920px
 	"xlarge-only":	(min-width: 90.0625em) and (max-width: 120em),	// 1441px - 1920px
-	"large":	(max-width: 90em),																		// <= 1440px
+	"xlarge-up":	(min-width: 90.0625em),														// <= 1920px
+	"xlarge":	(max-width: 120em),																		// <= 1920px
 	"large-only":	(min-width: 64.0625em) and (max-width: 90em),			// 1025px - 1440px
-	"medium":	(max-width: 64em),																		// <= 1024px
+	"large-up":	(min-width: 64.0625em),															// <= 1440px
+	"large":	(max-width: 90em),																		// <= 1440px
 	"medium-only":	(min-width: 40.0625em) and (max-width: 64em),		// 641px - 1024px
+	"medium-up":	(min-width: 40.0625em),														// <= 1024px
+	"medium":	(max-width: 64em),																		// <= 1024px
 	"not-small":	(min-width: 40.0625em),														// >= 641px
 	"small":	(max-width: 40em),																		// <= 640px
 	"xsmall":	(max-width: 30em),																		// <= 480px
@@ -218,9 +227,9 @@ $breakpoints: (
 	width: $width;
 	height: $height;
 }
-@mixin square($size) {
-	@include size($size, $size);
-}
+// @mixin square($size) {
+// 	@include size($size, $size);
+// }
 
 // Normal & hover state
 // --------------------
@@ -260,7 +269,7 @@ $breakpoints: (
 			position: absolute;
 		}
 		content:'';
-		@include square(0);
+		@include size(0);
 		-webkit-transform: rotate(360deg);
 		border-style: solid;
 		@if $direction == up {
@@ -339,7 +348,7 @@ $breakpoints: (
 	display: $display;
 	border-radius: 50%;
 	@if $border-width {
-		@include square($size);
+		@include size($size);
 		background-color: $color;
 		border: $border-width solid $border-color;
 	}
@@ -347,11 +356,28 @@ $breakpoints: (
 		@if $color == inherit {
 			border-width: $size/2;
 			border-style: solid;
-			@include square(0);
+			@include size(0);
 		}
 		@else {
-			@include square($size);
+			@include size($size);
 			background-color: $color;
+		}
+	}
+}
+
+// Create a psuedo element square, with an optional border
+@mixin square($size: $square-size-default,
+						$color: $square-color-default,
+						$border-width: $square-border-width-default,
+						$border-color: $square-border-color-default,
+						$element: $square-element-default) {
+	&:#{$element} {
+		content: '';
+		position: absolute;
+		@include size($size);
+		background: $color;
+		@if $border-width {
+			border: $border-width solid $border-color;
 		}
 	}
 }
@@ -382,6 +408,28 @@ $breakpoints: (
 	@include position(fixed, $top, $right, $bottom, $left);
 }
 
+// Easily set an element's "trbl" values
+// --------------------
+@mixin trbl($top: $position-default,
+								$right: $position-default,
+								$bottom: $position-default,
+								$left: $position-default) {
+	@each $data in top $top, right $right, bottom $bottom, left $left {
+		#{nth($data, 1)}: nth($data, 2);
+	}
+}
+@mixin top-left {
+	@include trbl(0,null,null,0);
+}
+@mixin top-right {
+	@include trbl(0,0);
+}
+@mixin bottom-left {
+	@include trbl(null,null,0,0);
+}
+@mixin bottom-right {
+	@include trbl(null,0,0,null);
+}
 
 // ----------------------------------
 // Placeholders
@@ -494,11 +542,21 @@ $breakpoints: (
 
 // Create a random color
 // ---------------------
-@function random-color() {
-	$red: random(256)-1;
-	$green: random(256)-1;
-	$blue: random(256)-1;
-	@return rgb($red, $green, $blue);
+@function random-color($min: 0, $max: 255, $alpha: 1) {
+	@if $min < 0 {
+		$min: -1;
+	} @else {
+		$min: $min - 1;
+	}
+	@if $max > 255 {
+		$max: 256;
+	} @else {
+		$max: $max + 1;
+	}
+	$red: random($max) + $min;
+	$green: random($max) + $min;
+	$blue: random($max) + $min;
+	@return rgba($red, $green, $blue, $alpha);
 }
 
 // Reverse a string
