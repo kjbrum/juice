@@ -1,11 +1,11 @@
 {
 	"name": "juice",
 	"description": "SASS Mixins for Life",
-	"version": "0.0.7",
+	"version": "0.0.8",
 	"homepage": "http://juicynex.us/juice",
   "license": "MIT",
   "author": {
-    "name": "Kyle Brumm",
+    "name": "Kyle Brumm"
   },
   "repository": {
     "type": "git",
