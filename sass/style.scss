@@ -288,9 +288,7 @@ pre {
 ///////////////////////////////////
 .top {
 	@include fixed(null,null,-30px,10px);
-	// @include size(30px);
-	width: 30px;
-	height: 30px;
+	@include size(30px, 30px);
 	background: $dark-blue;
 	line-height: 1;
 	opacity: 0;

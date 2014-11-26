@@ -120,7 +120,8 @@ gulp.task('build-images', function() {
 gulp.task('watch', function() {
 	gulp.watch(paths.scripts, ['scripts']);
 	gulp.watch(paths.styles, ['styles']);
-	gulp.watch(paths.images, ['images'])
+	gulp.watch('dist/_juice.scss', ['styles']);
+	gulp.watch(paths.images, ['images']);
 });
 
 // Browser Sync - autoreload the browser
