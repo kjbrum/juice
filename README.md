@@ -2,6 +2,10 @@
 
 ***
 
+#### Requirements:
+
++ Sass Version 3.3 (Breakpoint mixin uses a Sass map)
+
 #### Features:
 
 ##### Mixins
