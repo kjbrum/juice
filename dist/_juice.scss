@@ -78,12 +78,7 @@ $breakpoints: (
 	"ipad-retina":	(min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-device-pixel-ratio: 2),
 	"ipad-retina-landscape":	(min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape),
 	"ipad-retina-portrait":	(min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait),
-	"hdpi":	"(-webkit-min-device-pixel-ratio: $hdpi-ratio-default),
-					only screen and (min--moz-device-pixel-ratio: $hdpi-ratio-default),
-					only screen and (-moz-min-device-pixel-ratio: $hdpi-ratio-default),
-					only screen and (-o-min-device-pixel-ratio: #{$hdpi-ratio-default}/1),
-					only screen and (min-resolution: #{round($hdpi-ratio-default*96)}dpi),
-					only screen and (min-resolution: #{$hdpi-ratio-default}dppx)"
+	"hdpi":	"(-webkit-min-device-pixel-ratio: $hdpi-ratio-default), only screen and (min--moz-device-pixel-ratio: $hdpi-ratio-default), only screen and (-moz-min-device-pixel-ratio: $hdpi-ratio-default),	only screen and (-o-min-device-pixel-ratio: #{$hdpi-ratio-default}/1), only screen and (min-resolution: #{round($hdpi-ratio-default*96)}dpi), only screen and (min-resolution: #{$hdpi-ratio-default}dppx)"
 );
 @mixin bp($break, $viewport1: null) {
 	// preset breakpoint
