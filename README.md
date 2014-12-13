@@ -60,6 +60,29 @@ Simplify your life. Juice is a collection of SASS mixins/functions/placeholders 
 + Random Color
 + Reverse String
 
+## Installation
+
+You can use either bower or just clone the github repo directly.
+
+#### Bower
+
+```bash
+$ bower install juice
+```
+
+#### Clone/Fork
+
+```bash
+$ git clone git@github.com:kjbrum/juice.git
+```
+
+## Using the file
+
+Just import the "_juice.scss" file into your main scss file: 
+```bash
+@import "juice";
+```
+
 ## To-do:
 
 + Cut down on the code for triangle mixin (Use sass maps for "trbl" and translate direction, maybe direction and border direction also) (add in the option to make a border and triangle shape)
@@ -67,4 +90,4 @@ Simplify your life. Juice is a collection of SASS mixins/functions/placeholders 
 
 ## License
 
-Copyright © 2014 [Kyle Brumm](http://kylebrumm.com). Juice is free software, and may be redistributed under the terms specified in the [license](LICENSE.md).
+Copyright © 2014 [Kyle Brumm](http://kylebrumm.com). Juice is free to use on whatever and may be redistributed under the terms specified in the [license](LICENSE.md).
