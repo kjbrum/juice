@@ -1,4 +1,4 @@
-[![Bower Version](http://img.shields.io/bower/v/bootstrap.svg?style=flat-square)]()
+[![Bower Version](http://img.shields.io/badge/bower-0.0.8-56d7c6.svg?style=flat-square)]()
 
 # Juice - Mixins for Life
 
