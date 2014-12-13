@@ -1,20 +1,12 @@
 # Juice - Mixins for Life
 
-***
-
-#### Requirements:
-
-+ Sass Version 3.3 (Breakpoint mixin uses a Sass map)
-
-#### Features:# Juice - Mixins for Life
-
 Simplify your life. Juice is a collection of SASS mixins/functions/placeholders that is used to minimize the work needed to apply  styling/properties to element. Juice is not just a collection to help with cross browser support, so it is best paired with autoprefixer, for the best possible browser compatability.
 
-#### Requirements:
+## Requirements:
 
 + Sass Version 3.3
 
-#### Compatibility Issues / Conflicts:
+## Compatibility Issues / Conflicts:
 
 ##### Bourbon
 
@@ -28,53 +20,9 @@ Simplify your life. Juice is a collection of SASS mixins/functions/placeholders 
 + Single Side Border Radius (mixin)
 + Transforms (mixin)
 
-#### Features:
+## Features:
 
-##### Mixins
-
-+ Breakpoints
-+ Single Side Border Radius
-+ Single Transform
-+ Box Emboss
-+ Letterpress
-+ Placeholder Color
-+ Sizing
-+ Hoverer
-+ Responsive
-+ Triangle
-+ Circle
-+ Square
-+ Position
-+ TRBL
-
-##### Placeholders
-
-+ Clearfix
-+ Hide Text
-+ Centerer
-+ Vertical Centerer
-+ Coverer
-+ Center Block
-
-##### Functions
-
-+ Tint
-+ Shade
-+ Strip Units
-+ Rem Calc
-+ Em Calc
-+ Random Color
-+ Reverse String
-
-***
-
-#### To-do:
-
-+ Cut down on the code for triangle mixin (Use sass maps for "trbl" and translate direction, maybe direction and border direction also) (add in the option to make a border and triangle shape)
-+ Turn placeholders into argument-less mixins?
-
-
-##### Mixins
+#### Mixins
 
 + Breakpoints
 + Single Side Border Radius
@@ -91,7 +39,7 @@ Simplify your life. Juice is a collection of SASS mixins/functions/placeholders 
 + Position
 + TRBL
 
-##### Placeholders
+#### Placeholders
 
 + Clearfix
 + Hide Text
@@ -100,7 +48,7 @@ Simplify your life. Juice is a collection of SASS mixins/functions/placeholders 
 + Coverer
 + Center Block
 
-##### Functions
+#### Functions
 
 + Tint
 + Shade
@@ -110,9 +58,11 @@ Simplify your life. Juice is a collection of SASS mixins/functions/placeholders 
 + Random Color
 + Reverse String
 
-***
-
-#### To-do:
+## To-do:
 
 + Cut down on the code for triangle mixin (Use sass maps for "trbl" and translate direction, maybe direction and border direction also) (add in the option to make a border and triangle shape)
 + Turn placeholders into argument-less mixins?
+
+## License
+
+Copyright © 2014 [Kyle Brumm](http://kylebrumm.com). Juice is free software, and may be redistributed under the terms specified in the [license](LICENSE.md).
