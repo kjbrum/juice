@@ -1,3 +1,5 @@
+[![Bower Version](http://img.shields.io/bower/v/bootstrap.svg?style=flat-square)]()
+
 # Juice - Mixins for Life
 
 Simplify your life. Juice is a collection of SASS mixins/functions/placeholders that are used to minimize the work needed to apply styling/properties to elements. Juice is not just a collection to help with cross browser support, so it is best paired with autoprefixer, for the best possible browser compatability.
