@@ -91,6 +91,8 @@ Just import the "_juice.scss" file into your main scss file:
 
 + Cut down on the code for triangle mixin (Use sass maps for "trbl" and translate direction, maybe direction and border direction also) (add in the option to make a border and triangle shape)
 + Turn placeholders into argument-less mixins?
++ Add default variables for main breakpoint sizes (xxlarge - xxsmall)
++ Mixin for hiding and showing elements at certain breakpoints
 
 ## License
 
