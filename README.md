@@ -1,8 +1,8 @@
-![Bower Version](http://img.shields.io/badge/bower-0.0.8-56d7c6.svg?style=flat-square)
+![Bower Version](http://img.shields.io/badge/bower-1.0.0-56d7c6.svg?style=flat-square)
 
 # Juice - Mixins for Life
 
-Simplify your life. Juice is a collection of SASS mixins/functions/placeholders that are used to minimize the work needed to apply styling/properties to elements. Juice is not just a collection to help with cross browser support, so it is best paired with autoprefixer, for the best possible browser compatability.
+Simplify your life. Juice is a collection of SASS mixins/functions that are used to minimize the work needed to apply styling/properties to elements. Juice is not just a collection to help with cross browser support, so it is best paired with autoprefixer, for the best possible browser compatability.
 
 ## Documentation
 
@@ -12,25 +12,12 @@ http://juicynex.us/juice
 
 + Sass Version 3.3
 
-## Compatibility Issues / Conflicts:
-
-##### Bourbon
-
-+ Position (mixin)
-+ Single Side Border Radius (mixin)
-+ Triangle (mixin)
-+ Strip Units (function)
-
-##### Compass
-
-+ Single Side Border Radius (mixin)
-+ Transforms (mixin)
-
 ## Features:
 
 #### Mixins
 
 + Breakpoints
++ Show/Hide Element
 + Single Side Border Radius
 + Single Transform
 + Box Emboss
@@ -44,8 +31,10 @@ http://juicynex.us/juice
 + Square
 + Position
 + TRBL
++ Image Preload
++ Juice Prefixer
 
-#### Placeholders
+#### Helpers
 
 + Clearfix
 + Hide Text
@@ -53,6 +42,7 @@ http://juicynex.us/juice
 + Vertical Centerer
 + Coverer
 + Center Block
++ Clean
 
 #### Functions
 
@@ -87,12 +77,29 @@ Just import the "_juice.scss" file into your main scss file:
 @import "juice";
 ```
 
-## To-do:
+## Compatibility Issues / Conflicts:
 
-+ Cut down on the code for triangle mixin (Use sass maps for "trbl" and translate direction, maybe direction and border direction also) (add in the option to make a border and triangle shape)
-+ Turn placeholders into argument-less mixins?
-+ Add default variables for main breakpoint sizes (xxlarge - xxsmall)
-+ Mixin for hiding and showing elements at certain breakpoints
+##### Bourbon
+
++ Position (mixin)
++ Single Side Border Radius (mixin)
++ Triangle (mixin)
++ Strip Units (function)
+
+##### Compass
+
++ Single Side Border Radius (mixin)
++ Transforms (mixin)
+
+## Changelog:
+
+##### 1.0.0:
+
++ __Placeholders have been turned into argument-less mixins (helpers)__
++ New mixins - Image Preload, show/hide, juice prefixer, clean
++ Global option (variable) to add cross browser prefixes
++ Added a few extra breakpoint presets (mostly -only options)
++ Fixed the breakpoint mixin so that the more complex queries actually work now
 
 ## License
 

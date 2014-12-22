@@ -1,16 +1,7 @@
-﻿/*
+/**
+ * Custom Style
+ */
 
-Dark style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiacs.Org>
-
-*/
-
-.hljs {
-  display: block;
-  overflow-x: auto;
-  padding: 0.5em;
-  background: #444;
-  -webkit-text-size-adjust: none;
-}
 
 .hljs-keyword,
 .hljs-literal,
@@ -18,32 +9,32 @@ Dark style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiacs.Or
 .hljs-winutils,
 .hljs-flow,
 .nginx .hljs-title,
-.tex .hljs-special {
-  color: white;
-}
-
-.hljs,
-.hljs-subst {
-  color: #ddd;
-}
-
-.hljs-string,
-.hljs-title,
+.css .hljs-id,
+.tex .hljs-special,
+.css .hljs-tag,
+.css .hljs-pseudo,
+.hljs-attribute,
+.hljs .hljs-constant,
+.xml .hljs-attribute,
+.xml .hljs-tag .hljs-value,
+.hljs-code,
+.hljs-class .hljs-title,
+.hljs-header,
+.hljs-regexp,
+.hljs-doctype,
+.hljs-link_url,
+.hljs-tag .hljs-title,
+.hljs-bullet,
+.hljs-subst,
+.hljs-emphasis,
 .hljs-type,
-.ini .hljs-title,
-.hljs-tag .hljs-value,
-.css .hljs-rules .hljs-value,
-.hljs-preprocessor,
 .hljs-pragma,
-.ruby .hljs-symbol,
-.ruby .hljs-symbol .hljs-string,
 .ruby .hljs-class .hljs-parent,
 .hljs-built_in,
 .django .hljs-template_tag,
 .django .hljs-variable,
 .smalltalk .hljs-class,
 .hljs-javadoc,
-.ruby .hljs-string,
 .django .hljs-filter .hljs-argument,
 .smalltalk .hljs-localvars,
 .smalltalk .hljs-array,
@@ -56,28 +47,44 @@ Dark style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiacs.Or
 .apache .hljs-cbracket,
 .tex .hljs-command,
 .hljs-prompt,
-.coffeescript .hljs-attribute {
-  color: #d88;
-}
-
-.hljs-comment,
+.hljs-string,
 .hljs-annotation,
+.hljs-blockquote,
+.hljs-horizontal_rule,
 .hljs-decorator,
 .hljs-pi,
-.hljs-doctype,
 .hljs-deletion,
 .hljs-shebang,
 .apache .hljs-sqbracket,
 .tex .hljs-formula {
-  color: #777;
+  color: $teal;
+}
+
+.hljs-hexcolor,
+.hljs-preprocessor,
+.hljs-value,
+.hljs-number {
+	color: $purple;
+}
+
+.hljs-at_rule,
+.hljs-tag,
+.hljs-at_rule .hljs-keyword,
+.hljs-class {
+	color: $white;
+}
+
+.hljs-comment {
+	color: darken($white, 55%);
 }
 
 .hljs-keyword,
 .hljs-literal,
-.hljs-title,
 .css .hljs-id,
 .hljs-phpdoc,
 .hljs-dartdoc,
+.hljs-title,
+.hljs-header,
 .hljs-type,
 .vbscript .hljs-built_in,
 .rsl .hljs-built_in,
@@ -89,16 +96,7 @@ Dark style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiacs.Or
 .apache .hljs-tag,
 .tex .hljs-special,
 .hljs-request,
+.hljs-at_rule .hljs-keyword,
 .hljs-status {
   font-weight: bold;
-}
-
-.coffeescript .javascript,
-.javascript .xml,
-.tex .hljs-formula,
-.xml .javascript,
-.xml .vbscript,
-.xml .css,
-.xml .hljs-cdata {
-  opacity: 0.5;
 }

@@ -14,15 +14,15 @@ $(function() {
 
 	$(document).on('click', '#main-navigation li a, .top, .navbar-brand, .overview-links a', function() {
 		var section = $(this).attr('href'),
-				extra = -9;
+				extra = -8;
 		$('html, body').animate({scrollTop:$(section).offset().top+extra},{duration:500});
 		return false;
 	});
 
 	// Collapse nav when link is clicked
 	$(document).on('click', '.nav a', function(){
-		if($(window).width() <= 768) {
-			$(".navbar-toggle").click();
+		if($(window).width() <= 800) {
+			$('.navbar-toggle').click();
 		}
 	});
 
