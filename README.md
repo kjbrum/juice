@@ -2,7 +2,7 @@
 
 # Juice - Mixins for Life
 
-Simplify your life. Juice is a collection of Sass mixins/functions that are used to minimize the work needed to apply styling/properties to elements. Juice is not just a collection to help with cross browser support, so it is best paired with autoprefixer, for the best possible browser compatability.
+Simplify your life. Juice is a collection of Sass mixins/functions that are used to minimize the work needed to apply styling/properties to elements. Juice is not just a collection to help with cross browser support, so it is best paired with autoprefixer, for the best possible browser compatibility.
 
 ## Documentation
 
@@ -72,7 +72,7 @@ $ git clone git@github.com:kjbrum/juice.git
 
 ## Using the file
 
-Just import the "_juice.scss" file into your main scss file: 
+Just import the "_juice.scss" file into your main scss file:
 ```bash
 @import "juice";
 ```
