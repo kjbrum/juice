@@ -1,0 +1,9 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>html5 notepad</title>
+<textarea></textarea>
+<script>
+var n = document.getElementsByTagName('textarea')[0];
+n.onchange = function(){localStorage.setItem("n",n.value);}
+n.value = localStorage.getItem("n");
+</script>
