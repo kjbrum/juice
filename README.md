@@ -105,6 +105,10 @@ Just import the "_juice.scss" file into your main scss file:
 + Added a few extra breakpoint presets (mostly -only options)
 + Fixed the breakpoint mixin so that the more complex queries actually work now
 
+## To-Do
+
++ Change the way mixins that take multiple values (trbl, size, etc..) are structured. (Make it so they don't require commas)
+
 ## License
 
 Copyright © 2014 [Kyle Brumm](http://kylebrumm.com). Juice is free to use on whatever and may be redistributed under the terms specified in the [license](LICENSE.md).
