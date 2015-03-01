@@ -1,5 +1,5 @@
 // Juice
-@import "dist/juice";
+@import "../dist/juice";
 
 // Partials
 @import "colors";
@@ -315,7 +315,7 @@ article:not(.section-heading) {
 @import "code_styles/custom";
 
 pre {
-	padding: 0 !important;
+  padding: 0 !important;
   background: #282828;
   border: none;
   border-radius: 0;
@@ -325,16 +325,16 @@ pre {
 	code {
 	  display: block;
 	  overflow-x: auto;
-		color: $white;
-		font-size: 16px;
-		max-width: 50em;
-		margin: 0 auto;
-		padding: 30px 10px;
+	  color: $white;
+	  font-size: 16px;
+	  max-width: 50em;
+	  margin: 0 auto;
+	  padding: 30px 10px;
 	  background: transparent;
 	  -webkit-text-size-adjust: none;
-		@include bp(max, 50em) {
-			font-size: 1.2rem !important;
-		}
+	  @include bp(max, 50em) {
+	    font-size: 1.2rem !important;
+	  }
 	}
 }
 

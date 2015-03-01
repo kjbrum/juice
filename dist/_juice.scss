@@ -1,7 +1,7 @@
 // --------------------------------------------------------------------
 // Juice v1.0.0
 // --------------------------------------------------------------------
-
+@charset "UTF-8";
 
 
 
@@ -331,7 +331,7 @@ $breakpoints: (
 // -------------
 @mixin box-emboss($opacity: 0.5, $opacity2: 0.5){
 	@if $browser-prefixes {
-		@include juice-prefixer(box-shadow, "rgba(white,$opacity) 0 1px 0, inset rgba(black,$opacity2) 0 1px 0", webkit spec);
+		@include juice-prefixer(box-shadow, "rgba(white,#{$opacity}) 0 1px 0, inset rgba(black,#{$opacity2}) 0 1px 0", webkit spec);
 	}
 	@else {
 		box-shadow: rgba(white,$opacity) 0 1px 0, inset rgba(black,$opacity2) 0 1px 0;
@@ -716,7 +716,7 @@ $breakpoints: (
 @function tint($color, $percent: $mix-percent-default){
 	@return mix(white, $color, $percent);
 }
- 
+
 // Mix black with another color
 // ----------------------------
 @function shade($color, $percent: $mix-percent-default){

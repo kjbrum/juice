@@ -1,4 +1,4 @@
-![Bower Version](http://img.shields.io/badge/bower-1.0.0-56d7c6.svg?style=flat-square)
+![Bower Version](http://img.shields.io/badge/bower-1.0.1-56d7c6.svg?style=flat-square)
 
 # Juice - Mixins for Life
 
