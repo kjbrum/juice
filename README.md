@@ -93,6 +93,10 @@ Just import the "_juice.scss" file into your main scss file:
 
 ## Changelog:
 
+##### 1.0.1:
+
++ Fix box-emboss with prefixes issue
+
 ##### 1.0.0:
 
 + __Placeholders have been turned into argument-less mixins (helpers)__
