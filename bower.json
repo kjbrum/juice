@@ -1,29 +1,33 @@
 {
-	"name": "juice",
-	"description": "SASS Mixins for Life",
-	"version": "1.0.0",
-	"homepage": "http://juicynex.us/juice",
-	"keywords": [
-		"CSS",
-		"SASS",
-		"SCSS",
-		"mixins",
-		"styling",
-		"helper"
-	],
-	"main": [
-		"dist/_juice.scss"
-	],
-	"authors": [
-		"Kyle Brumm <https://twitter.com/kyle_brumm>"
-	],
-	"license": "MIT",
-	"ignore": [
-		"*.*",
-		"bower_components",
-		"build",
-		"img",
-		"js",
-		"sass"
-	]
+  "name": "juice",
+  "description": "SASS Mixins for Life",
+  "version": "1.0.1",
+  "homepage": "http://juicynex.us/juice",
+  "keywords": [
+    "CSS",
+    "SASS",
+    "SCSS",
+    "mixins",
+    "styling",
+    "helper"
+  ],
+  "main": [
+    "dist/_juice.scss"
+  ],
+  "authors": [
+    "Kyle Brumm <https://twitter.com/kyle_brumm>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "*.*",
+    "bower_components",
+    "build",
+    "img",
+    "js",
+    "sass"
+  ],
+  "dependencies": {
+    "fontawesome": "~4.3.0",
+    "bootstrap-sass-official": "~3.3.3"
+  }
 }
