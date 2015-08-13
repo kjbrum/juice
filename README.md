@@ -111,4 +111,4 @@ Just import the "_juice.scss" file into your main scss file:
 
 ## License
 
-Copyright © 2014 [Kyle Brumm](http://kylebrumm.com). Juice is free to use on whatever and may be redistributed under the terms specified in the [license](LICENSE.md).
+Copyright © [Kyle Brumm](http://kylebrumm.com). Juice is free to use on whatever and may be redistributed under the terms specified in the [license](LICENSE.md).
