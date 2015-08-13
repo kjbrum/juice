@@ -6,7 +6,7 @@ Simplify your life. Juice is a collection of Sass mixins/functions that are used
 
 ## Documentation
 
-http://juicynex.us/juice
+http://kylebrumm.com/juice
 
 ## Requirements:
 
